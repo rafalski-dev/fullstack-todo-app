@@ -1,0 +1,104 @@
+.item {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(--surface);
+	padding: 15px 20px 15px 15px;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	transition: all 0.2s;
+}
+
+.item:hover {
+	background-color: var(--surface-light);
+	border: 1px solid var(--border-light);
+}
+
+.item:hover .rightBox {
+	opacity: 1;
+}
+
+.leftBox {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.leftBox p {
+	font-size: 1.5rem;
+}
+
+.leftBox .checkbox {
+	width: 22px;
+	height: 22px;
+	background-color: var(--bg);
+	border: 2px solid var(--border-light);
+	border-radius: 7px;
+	transition:
+		border-color 0.2s ease,
+		background 0.2s ease,
+		transform 0.15s ease;
+	cursor: pointer;
+}
+
+.leftBox .checkbox:hover {
+	border: 2px solid var(--accent);
+}
+
+.leftBox .checkbox:active {
+	transform: scale(0.9);
+}
+
+.leftBox .done {
+	background-color: var(--accent);
+	border-color: var(--accent);
+}
+
+.leftBox .checkbox svg {
+	width: 17px;
+	height: 17px;
+	stroke-width: 3;
+	opacity: 0;
+}
+
+.leftBox .done svg {
+	width: 17px;
+	height: 17px;
+	stroke-width: 3;
+	opacity: 1;
+}
+
+.leftBox .done ~ p {
+	color: var(--text-faint);
+	text-decoration: line-through;
+}
+
+.rightBox {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	transition: all 0.2s;
+	opacity: 0;
+}
+
+.rightBox button {
+	width: 30px;
+	height: 30px;
+	color: var(--text-faint);
+	background: none;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.rightBox .edit:hover {
+	background-color: var(--surface-very-light);
+	color: var(--text);
+}
+
+.rightBox .delete:hover {
+	background-color: var(--surface-very-light);
+	color: var(--delete);
+}

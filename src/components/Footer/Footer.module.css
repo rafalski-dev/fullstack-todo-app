@@ -1,0 +1,24 @@
+.footer {
+	display: flex;
+	justify-content: space-between;
+    
+}
+
+.footer span {
+	font-size: 1.4rem;
+	color: var(--text-faint);
+    
+}
+
+.footer button {
+	border: none;
+	background: none;
+	color: var(--text-faint);
+	cursor: pointer;
+	transition: color 0.2s;
+    
+}
+
+.footer button:hover {
+	color: var(--delete);
+}

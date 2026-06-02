@@ -1,0 +1,45 @@
+:root {
+	--bg: #0a0a0b;
+	--surface: #0b0b0b;
+	--surface-light: #121212;
+	--surface-very-light: #202020;
+	--border: rgba(255, 255, 255, 0.07);
+	--border-light: rgba(255, 255, 255, 0.13);
+	--text: #ededef;
+	--text-dim: #818193;
+	--text-faint: #56565e;
+	--accent: #f5b544;
+	--delete: #ff6347;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-size: 1.6rem;
+	min-height: 100dvh;
+	background-color: #111010;
+	background-image:
+		radial-gradient(ellipse 600px 500px at 10% 10%, rgba(180, 120, 20, 0.35) 0%, transparent 70%),
+		radial-gradient(ellipse 500px 400px at 90% 80%, rgba(180, 120, 20, 0.35) 0%, transparent 70%);
+	color: var(--text);
+	font-family: 'Hanken Grotesk', sans-serif;
+}
+
+
+input, button {
+	font-family: 'Hanken Grotesk', sans-serif;
+}
