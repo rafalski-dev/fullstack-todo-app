@@ -1,5 +1,7 @@
+import { formattedDate } from '../../utils/Date';
 import styles from './Header.module.css';
 import { IconListDetails } from '@tabler/icons-react';
+
 
 export function Header() {
 	return (
@@ -11,11 +13,11 @@ export function Header() {
 					</div>
 					<h1>To Do</h1>
 				</div>
-				<span>Sunday, 31 May</span>
+				<span>{formattedDate()}</span>
 			</div>
 			<div className={styles.rightContainer}>
 				<span className={styles.numberOfTasks}>
-					1<span>/3</span>
+					1<span> / 3</span>
 				</span>
 				<span className={styles.completed}>Completed</span>
 			</div>

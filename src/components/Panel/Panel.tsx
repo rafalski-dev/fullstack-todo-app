@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Footer } from '../Footer/Footer';
 import { Form } from '../Form/Form';
 import { Header } from '../Header/Header';
@@ -11,11 +12,15 @@ const initialData = [
 ];
 
 export function Panel() {
+	const [todoData, setTodoData] = useState(initialData);
+
+	
+	
 	return (
 		<div className={styles.panel}>
 			<Header />
 			<Form />
-			<List todoData={initialData} />
+			<List todoData={todoData} />
 			<Footer />
 		</div>
 	);
