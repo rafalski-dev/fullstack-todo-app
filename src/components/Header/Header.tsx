@@ -2,7 +2,6 @@ import { formattedDate } from '../../utils/Date';
 import styles from './Header.module.css';
 import { IconListDetails } from '@tabler/icons-react';
 
-
 export function Header() {
 	return (
 		<header className={styles.header}>

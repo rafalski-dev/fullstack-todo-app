@@ -11,15 +11,34 @@ const initialData = [
 	{ id: 3, content: 'Do the laundry', done: false, editing: false }
 ];
 
-export function Panel() {
-	const [todoData, setTodoData] = useState(initialData);
+type TodoData = {
+	id: number;
+	content: string;
+	done: boolean;
+	editing: boolean;
+};
 
-	
-	
+export function Panel() {
+	const [todoData, setTodoData] = useState<TodoData[]>(initialData);
+
+	function addTodo(newTodo: string) {
+		setTodoData(prevTodos => {
+			return [
+				...prevTodos,
+				{
+					id: prevTodos.length === 0 ? 0 : prevTodos.at(-1).id + 1,
+					content: newTodo,
+					done: false,
+					editing: false
+				}
+			];
+		});
+	}
+
 	return (
 		<div className={styles.panel}>
 			<Header />
-			<Form />
+			<Form addTodo={addTodo} />
 			<List todoData={todoData} />
 			<Footer />
 		</div>

@@ -8,9 +8,15 @@
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
-	transition: transform 0.3s ease;
+	transition:
+		transform 0.3s ease,
+		background-color 0.3s ease;
 }
 
 .btn:active {
 	transform: scale(0.88);
+}
+
+.btn:disabled {
+	background-color: var(--accent-dim);
 }
