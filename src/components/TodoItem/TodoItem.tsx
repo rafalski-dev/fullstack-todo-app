@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import styles from './TodoItem.module.css';
 import { IconPencil, IconTrash, IconCheck } from '@tabler/icons-react';
 
@@ -5,22 +6,85 @@ type TodoItem = {
 	id: number;
 	content: string;
 	done: boolean;
+	editing: boolean;
+	completeTodo: (val: number) => void;
+	undoTodo: (val: number) => void;
+	deleteTodo: (val: number) => void;
+	switchOnEditing: (val: number) => void;
+	switchOffEditing: () => void;
+	updateTodo: (val: string, val2: number) => void;
 };
 
-export function TodoItem({ id, content, done }: TodoItem) {
+export function TodoItem({
+	id,
+	content,
+	done,
+	editing,
+	completeTodo,
+	undoTodo,
+	deleteTodo,
+	switchOnEditing,
+	switchOffEditing,
+	updateTodo
+}: TodoItem) {
+	const [valueToEdit, setValueToEdit] = useState(content);
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		if (editing && inputRef.current) {
+			inputRef.current.focus();
+		}
+	}, [editing]);
+
 	return (
 		<li className={styles.item}>
 			<div className={styles.leftBox}>
-				<button className={`${styles.checkbox} ${done ? styles.done : ''}`}>
+				<button
+					onClick={() => {
+						if (done) {
+							undoTodo(id);
+						} else {
+							completeTodo(id);
+						}
+					}}
+					className={`${styles.checkbox} ${done ? styles.done : ''}`}>
 					<IconCheck />
 				</button>
-				<p>{content}</p>
+				{editing ? (
+					<input
+						ref={inputRef}
+						value={valueToEdit}
+						onBlur={() => {
+							updateTodo(valueToEdit, id);
+							switchOffEditing();
+						}}
+						onChange={e => setValueToEdit(e.target.value)}
+						onKeyDown={e => {
+							if (e.key === 'Enter') {
+								updateTodo(valueToEdit, id);
+								switchOffEditing();
+							}
+							if (e.key === 'Escape') {
+								setValueToEdit(content);
+								switchOffEditing();
+							}
+						}}
+					/>
+				) : (
+					<p>{content}</p>
+				)}
 			</div>
 			<div className={styles.rightBox}>
-				<button className={styles.edit}>
-					<IconPencil size={19} strokeWidth={2} />
-				</button>
-				<button className={styles.delete}>
+				{!editing && (
+					<button
+						className={styles.edit}
+						onClick={() => {
+							switchOnEditing(id);
+						}}>
+						<IconPencil size={19} strokeWidth={2} />
+					</button>
+				)}
+				<button className={styles.delete} onClick={() => deleteTodo(id)}>
 					<IconTrash size={19} strokeWidth={2} />
 				</button>
 			</div>

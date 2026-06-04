@@ -2,7 +2,11 @@ import { formattedDate } from '../../utils/Date';
 import styles from './Header.module.css';
 import { IconListDetails } from '@tabler/icons-react';
 
-export function Header() {
+type HeaderProps = {
+	tasksCounter: (val: string) => string;
+};
+
+export function Header({ tasksCounter }: HeaderProps) {
 	return (
 		<header className={styles.header}>
 			<div className={styles.leftContainer}>
@@ -16,7 +20,8 @@ export function Header() {
 			</div>
 			<div className={styles.rightContainer}>
 				<span className={styles.numberOfTasks}>
-					1<span> / 3</span>
+					{tasksCounter('completed')}
+					<span> / {tasksCounter('total')}</span>
 				</span>
 				<span className={styles.completed}>Completed</span>
 			</div>

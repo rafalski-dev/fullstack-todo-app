@@ -3,6 +3,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: 10px;
 	background-color: var(--surface);
 	padding: 15px 20px 15px 15px;
 	border: 1px solid var(--border);
@@ -20,6 +21,7 @@
 }
 
 .leftBox {
+	width: 100%;
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -72,6 +74,19 @@
 .leftBox .done ~ p {
 	color: var(--text-faint);
 	text-decoration: line-through;
+}
+
+.leftBox input {
+	width: 100%;
+	padding: 7px 14px;
+	background-color: var(--bg);
+	color: var(--text);
+	border: 1px solid var(--accent);
+	border-radius: 8px;
+}
+
+.leftBox input:focus {
+	outline: none;
 }
 
 .rightBox {

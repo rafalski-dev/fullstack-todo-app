@@ -1,10 +1,15 @@
 import styles from './Footer.module.css';
 
-export function Footer() {
+type FooterProps = {
+	clearCompletedTasks: () => void;
+	tasksCounter: (val: string) => string;
+};
+
+export function Footer({ clearCompletedTasks, tasksCounter }: FooterProps) {
 	return (
 		<footer className={styles.footer}>
-			<span>2 tasks left</span>
-			<button>Clear completed</button>
+			<span>{tasksCounter('left')} tasks left</span>
+			<button onClick={clearCompletedTasks}>Clear completed</button>
 		</footer>
 	);
 }
