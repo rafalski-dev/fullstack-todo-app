@@ -1,15 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Footer } from '../Footer/Footer';
 import { Form } from '../Form/Form';
 import { Header } from '../Header/Header';
 import { List } from '../List/List';
 import styles from './Panel.module.css';
-
-const initialData = [
-	{ id: 1, content: 'Do the shopping', done: false, editing: false },
-	{ id: 2, content: 'Clean my room', done: true, editing: false },
-	{ id: 3, content: 'Do the laundry', done: false, editing: false }
-];
+import { supabase } from '../../lib/supabase';
 
 type TodoData = {
 	id: number;
@@ -19,10 +14,28 @@ type TodoData = {
 };
 
 export function Panel() {
-	const [todoData, setTodoData] = useState<TodoData[]>(initialData);
+	const [todoData, setTodoData] = useState<TodoData[]>([]);
+	const [isLoadingShown, setIsLoadingShown] = useState(true);
+
 	const totalNumberOfTasks: number = todoData.length;
 	const completedNumberOfTasks: number = todoData.filter(todo => todo.done).length;
 	const tobedoneNumberOfTasks: number = todoData.filter(todo => !todo.done).length;
+
+	useEffect(() => {
+		async function fetchTodos() {
+			const { data, error } = await supabase.from('todos').select();
+
+			if (error) {
+				console.error(`Błąd podczas pobierania danych, numer błędu: ${error.code}`);
+				setIsLoadingShown(false);
+				return;
+			}
+			setTodoData(data.map(todo => ({ ...todo, editing: false })));
+			setIsLoadingShown(false);
+		}
+
+		fetchTodos();
+	}, []);
 
 	function addTodo(newTodo: string) {
 		setTodoData(prevTodos => {
@@ -88,6 +101,7 @@ export function Panel() {
 			<Header totalNumberOfTasks={totalNumberOfTasks} completedNumberOfTasks={completedNumberOfTasks} />
 			<Form addTodo={addTodo} />
 			<List
+				isLoadingShown={isLoadingShown}
 				todoData={todoData}
 				toggleTodo={toggleTodo}
 				deleteTodo={deleteTodo}

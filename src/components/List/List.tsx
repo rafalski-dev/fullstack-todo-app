@@ -1,6 +1,7 @@
 import styles from './List.module.css';
 
 import { TodoItem } from '../TodoItem/TodoItem';
+import { Spinner } from '../Spinner/Spinner';
 
 type ListProps = {
 	todoData: { id: number; content: string; done: boolean; editing: boolean }[];
@@ -9,9 +10,19 @@ type ListProps = {
 	switchOnEditing: (val: number) => void;
 	switchOffEditing: () => void;
 	updateTodo: (val: string, val2: number) => void;
+	isLoadingShown: boolean;
 };
 
-export function List({ todoData, toggleTodo, switchOnEditing, switchOffEditing, updateTodo, deleteTodo }: ListProps) {
+export function List({
+	todoData,
+	toggleTodo,
+	switchOnEditing,
+	switchOffEditing,
+	updateTodo,
+	deleteTodo,
+	isLoadingShown
+}: ListProps) {
+	if (isLoadingShown) return <Spinner />;
 	return (
 		<div className={styles.list}>
 			<ul>
