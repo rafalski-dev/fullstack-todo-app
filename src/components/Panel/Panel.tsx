@@ -29,7 +29,7 @@ export function Panel() {
 			return [
 				...prevTodos,
 				{
-					id: prevTodos.length === 0 ? 1 : prevTodos.at(-1).id + 1,
+					id: prevTodos.length === 0 ? 1 : prevTodos.at(-1)!.id + 1,
 					content: newTodo,
 					done: false,
 					editing: false
