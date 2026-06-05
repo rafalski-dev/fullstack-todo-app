@@ -20,20 +20,16 @@ type TodoData = {
 
 export function Panel() {
 	const [todoData, setTodoData] = useState<TodoData[]>(initialData);
-
-	function tasksCounter(chooseValue: string) {
-		const numberOfTasks = todoData;
-		if (chooseValue === 'total') return numberOfTasks.length;
-		if (chooseValue === 'completed') return numberOfTasks.filter(todo => todo.done).length;
-		if (chooseValue === 'left') return numberOfTasks.filter(todo => !todo.done).length;
-	}
+	const totalNumberOfTasks: number = todoData.length;
+	const completedNumberOfTasks: number = todoData.filter(todo => todo.done).length;
+	const tobedoneNumberOfTasks: number = todoData.filter(todo => !todo.done).length;
 
 	function addTodo(newTodo: string) {
 		setTodoData(prevTodos => {
 			return [
 				...prevTodos,
 				{
-					id: prevTodos.length === 0 ? 0 : prevTodos.at(-1).id + 1,
+					id: prevTodos.length === 0 ? 1 : prevTodos.at(-1).id + 1,
 					content: newTodo,
 					done: false,
 					editing: false
@@ -42,28 +38,15 @@ export function Panel() {
 		});
 	}
 
-	function completeTodo(id: number) {
+	function toggleTodo(id: number) {
 		setTodoData(prevTodos =>
 			prevTodos.map(todo => {
 				if (todo.id === id) {
-					return { ...todo, done: true };
+					return { ...todo, done: !todo.done };
 				}
 				return todo;
 			})
 		);
-		console.log(id);
-	}
-
-	function undoTodo(id: number) {
-		setTodoData(prevTodos =>
-			prevTodos.map(todo => {
-				if (todo.id === id) {
-					return { ...todo, done: false };
-				}
-				return todo;
-			})
-		);
-		console.log(id);
 	}
 
 	function deleteTodo(id: number) {
@@ -102,18 +85,17 @@ export function Panel() {
 
 	return (
 		<div className={styles.panel}>
-			<Header tasksCounter={tasksCounter} />
+			<Header totalNumberOfTasks={totalNumberOfTasks} completedNumberOfTasks={completedNumberOfTasks} />
 			<Form addTodo={addTodo} />
 			<List
 				todoData={todoData}
-				completeTodo={completeTodo}
-				undoTodo={undoTodo}
+				toggleTodo={toggleTodo}
 				deleteTodo={deleteTodo}
 				switchOnEditing={switchOnEditing}
 				switchOffEditing={switchOffEditing}
 				updateTodo={updateTodo}
 			/>
-			<Footer clearCompletedTasks={clearCompletedTasks} tasksCounter={tasksCounter} />
+			<Footer clearCompletedTasks={clearCompletedTasks} tobedoneNumberOfTasks={tobedoneNumberOfTasks} />
 		</div>
 	);
 }

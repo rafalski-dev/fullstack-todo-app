@@ -7,8 +7,7 @@ type TodoItem = {
 	content: string;
 	done: boolean;
 	editing: boolean;
-	completeTodo: (val: number) => void;
-	undoTodo: (val: number) => void;
+	toggleTodo: (val: number) => void;
 	deleteTodo: (val: number) => void;
 	switchOnEditing: (val: number) => void;
 	switchOffEditing: () => void;
@@ -20,8 +19,7 @@ export function TodoItem({
 	content,
 	done,
 	editing,
-	completeTodo,
-	undoTodo,
+	toggleTodo,
 	deleteTodo,
 	switchOnEditing,
 	switchOffEditing,
@@ -41,11 +39,7 @@ export function TodoItem({
 			<div className={styles.leftBox}>
 				<button
 					onClick={() => {
-						if (done) {
-							undoTodo(id);
-						} else {
-							completeTodo(id);
-						}
+						toggleTodo(id);
 					}}
 					className={`${styles.checkbox} ${done ? styles.done : ''}`}>
 					<IconCheck />

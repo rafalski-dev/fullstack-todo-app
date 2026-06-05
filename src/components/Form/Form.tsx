@@ -10,12 +10,13 @@ type FormProps = {
 export function Form({ addTodo }: FormProps) {
 	const [inputValue, setInputValue] = useState('');
 
-	function onSubmit(e) {
+	function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		const newTodoValue = inputValue;
 		addTodo(newTodoValue);
 		setInputValue('');
 	}
+
 	return (
 		<form className={styles.form} onSubmit={onSubmit}>
 			<input

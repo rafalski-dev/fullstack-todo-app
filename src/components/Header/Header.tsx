@@ -3,10 +3,11 @@ import styles from './Header.module.css';
 import { IconListDetails } from '@tabler/icons-react';
 
 type HeaderProps = {
-	tasksCounter: (val: string) => string;
+	totalNumberOfTasks: number;
+	completedNumberOfTasks: number;
 };
 
-export function Header({ tasksCounter }: HeaderProps) {
+export function Header({ totalNumberOfTasks, completedNumberOfTasks }: HeaderProps) {
 	return (
 		<header className={styles.header}>
 			<div className={styles.leftContainer}>
@@ -20,8 +21,8 @@ export function Header({ tasksCounter }: HeaderProps) {
 			</div>
 			<div className={styles.rightContainer}>
 				<span className={styles.numberOfTasks}>
-					{tasksCounter('completed')}
-					<span> / {tasksCounter('total')}</span>
+					{completedNumberOfTasks}
+					<span> / {totalNumberOfTasks}</span>
 				</span>
 				<span className={styles.completed}>Completed</span>
 			</div>
