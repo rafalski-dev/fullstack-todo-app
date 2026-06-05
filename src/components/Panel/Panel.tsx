@@ -37,18 +37,28 @@ export function Panel() {
 		fetchTodos();
 	}, []);
 
-	function addTodo(newTodo: string) {
-		setTodoData(prevTodos => {
-			return [
-				...prevTodos,
-				{
-					id: prevTodos.length === 0 ? 1 : prevTodos.at(-1)!.id + 1,
-					content: newTodo,
-					done: false,
-					editing: false
-				}
-			];
-		});
+	async function addTodo(newTodo: string) {
+		const { data, error } = await supabase
+			.from('todos')
+			.insert([{ content: newTodo }])
+			.select();
+
+		if (error) {
+			console.error(`Błąd podczas dodawania danych, numer błędu: ${error.code}`);
+			return;
+		} else {
+			setTodoData(prevTodo => [...prevTodo, { ...data[0], editing: false }]);
+		}
+	}
+
+	async function deleteTodo(id: number) {
+		const { error } = await supabase.from('todos').delete().eq('id', id);
+		if (error) {
+			console.error(`Błąd podczas usuwania danych, numer błędu: ${error.code}`);
+			return;
+		} else {
+			setTodoData(prevTodo => prevTodo.filter(todo => todo.id !== id));
+		}
 	}
 
 	function toggleTodo(id: number) {
@@ -60,10 +70,6 @@ export function Panel() {
 				return todo;
 			})
 		);
-	}
-
-	function deleteTodo(id: number) {
-		setTodoData(prevTodos => prevTodos.filter(todo => todo.id !== id));
 	}
 
 	function switchOnEditing(id: number) {

@@ -20,6 +20,7 @@ export function Form({ addTodo }: FormProps) {
 	return (
 		<form className={styles.form} onSubmit={onSubmit}>
 			<input
+				autoComplete='off'
 				name='todo'
 				id='todo'
 				placeholder='What needs doing?'
