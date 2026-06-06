@@ -23,7 +23,7 @@ export function Panel() {
 
 	useEffect(() => {
 		async function fetchTodos() {
-			const { data, error } = await supabase.from('todos').select();
+			const { data, error } = await supabase.from('todos').select().order('created_at', { ascending: true });
 
 			if (error) {
 				console.error(`Błąd podczas pobierania danych, numer błędu: ${error.code}`);
@@ -61,15 +61,49 @@ export function Panel() {
 		}
 	}
 
-	function toggleTodo(id: number) {
-		setTodoData(prevTodos =>
-			prevTodos.map(todo => {
-				if (todo.id === id) {
-					return { ...todo, done: !todo.done };
-				}
-				return todo;
-			})
-		);
+	async function toggleTodo(id: number, done: boolean) {
+		const { error } = await supabase.from('todos').update({ done: !done }).eq('id', id);
+
+		if (error) {
+			console.error(error);
+			return;
+		} else {
+			setTodoData(prevTodos =>
+				prevTodos.map(todo => {
+					if (todo.id === id) {
+						return { ...todo, done: !done };
+					}
+					return todo;
+				})
+			);
+		}
+	}
+
+	async function updateTodo(updatedContent: string, id: number) {
+		const { error } = await supabase.from('todos').update({ content: updatedContent }).eq('id', id);
+
+		if (error) {
+			console.error(error);
+		} else {
+			setTodoData(prevTodo =>
+				prevTodo.map(todo => {
+					if (todo.id === id) {
+						return { ...todo, content: updatedContent };
+					}
+					return todo;
+				})
+			);
+		}
+	}
+
+	async function clearCompletedTasks() {
+		const { error } = await supabase.from('todos').delete().eq('done', true);
+
+		if (error) {
+			console.error(error);
+		} else {
+			setTodoData(prevTodo => prevTodo.filter(todo => todo.done !== true));
+		}
 	}
 
 	function switchOnEditing(id: number) {
@@ -85,21 +119,6 @@ export function Panel() {
 
 	function switchOffEditing() {
 		setTodoData(prevTodo => prevTodo.map(todo => ({ ...todo, editing: false })));
-	}
-
-	function updateTodo(updatedContent: string, id: number) {
-		setTodoData(prevTodo =>
-			prevTodo.map(todo => {
-				if (todo.id === id) {
-					return { ...todo, content: updatedContent };
-				}
-				return todo;
-			})
-		);
-	}
-
-	function clearCompletedTasks() {
-		setTodoData(prevTodo => prevTodo.filter(todo => todo.done !== true));
 	}
 
 	return (

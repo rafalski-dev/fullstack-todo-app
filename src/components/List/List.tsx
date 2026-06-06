@@ -5,7 +5,7 @@ import { Spinner } from '../Spinner/Spinner';
 
 type ListProps = {
 	todoData: { id: number; content: string; done: boolean; editing: boolean }[];
-	toggleTodo: (val: number) => void;
+	toggleTodo: (val: number, val2: boolean) => void;
 	deleteTodo: (val: number) => void;
 	switchOnEditing: (val: number) => void;
 	switchOffEditing: () => void;

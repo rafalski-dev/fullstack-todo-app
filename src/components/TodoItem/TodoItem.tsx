@@ -7,7 +7,7 @@ type TodoItem = {
 	content: string;
 	done: boolean;
 	editing: boolean;
-	toggleTodo: (val: number) => void;
+	toggleTodo: (val: number, val2: boolean) => void;
 	deleteTodo: (val: number) => void;
 	switchOnEditing: (val: number) => void;
 	switchOffEditing: () => void;
@@ -39,7 +39,7 @@ export function TodoItem({
 			<div className={styles.leftBox}>
 				<button
 					onClick={() => {
-						toggleTodo(id);
+						toggleTodo(id, done);
 					}}
 					className={`${styles.checkbox} ${done ? styles.done : ''}`}>
 					<IconCheck />
