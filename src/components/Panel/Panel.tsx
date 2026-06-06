@@ -16,6 +16,7 @@ type TodoData = {
 export function Panel() {
 	const [todoData, setTodoData] = useState<TodoData[]>([]);
 	const [isLoadingShown, setIsLoadingShown] = useState(true);
+	const [activeCategory, setActiveCategory] = useState('All');
 
 	const totalNumberOfTasks: number = todoData.length;
 	const completedNumberOfTasks: number = todoData.filter(todo => todo.done).length;
@@ -121,6 +122,10 @@ export function Panel() {
 		setTodoData(prevTodo => prevTodo.map(todo => ({ ...todo, editing: false })));
 	}
 
+	function changeCategory(category: string) {
+		setActiveCategory(category);
+	}
+
 	return (
 		<div className={styles.panel}>
 			<Header totalNumberOfTasks={totalNumberOfTasks} completedNumberOfTasks={completedNumberOfTasks} />
@@ -133,6 +138,8 @@ export function Panel() {
 				switchOnEditing={switchOnEditing}
 				switchOffEditing={switchOffEditing}
 				updateTodo={updateTodo}
+				changeCategory={changeCategory}
+				activeCategory={activeCategory}
 			/>
 			<Footer clearCompletedTasks={clearCompletedTasks} tobedoneNumberOfTasks={tobedoneNumberOfTasks} />
 		</div>

@@ -1,8 +1,9 @@
 .btn {
-	padding: 5px 10px;
+	padding: 6px 12px;
 	background-color: transparent;
 	color: var(--text-dim);
 	border: none;
+	border-radius: 8px;
 	font-size: 14px;
 	font-family: 'Hanken Grotesk', sans-serif;
 	cursor: pointer;
@@ -12,6 +13,12 @@
 .btn:hover {
 	color: var(--text);
 }
-
+ 
 .active {
+	color: var(--accent);
+	background-color: rgba(245, 180, 68, 0.1);
+}
+
+.active:hover {
+	color: var(--accent);
 }

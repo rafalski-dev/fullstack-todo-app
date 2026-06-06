@@ -1,10 +1,17 @@
 import styles from './CategoryButton.module.css';
-import type { ReactNode } from 'react';
 
 type CategoryButtonProps = {
-	children: ReactNode;
+	children: string;
+	changeCategory: (val: string) => void;
+	activeCategory: string;
 };
 
-export function CategoryButton({ children }: CategoryButtonProps) {
-	return <button className={styles.btn}>{children}</button>;
+export function CategoryButton({ children, changeCategory, activeCategory }: CategoryButtonProps) {
+	return (
+		<button
+			onClick={() => changeCategory(children)}
+			className={`${styles.btn} ${activeCategory === children ? styles.active : ''}`}>
+			{children}
+		</button>
+	);
 }
