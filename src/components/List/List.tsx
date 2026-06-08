@@ -30,7 +30,7 @@ export function List({
 	const filteredTodos = todoData.filter(todo => {
 		if (activeCategory === 'Active') return todo.done === false;
 		if (activeCategory === 'Done') return todo.done === true;
-		return todo;
+		return true;
 	});
 
 	if (isLoadingShown) return <Spinner />;

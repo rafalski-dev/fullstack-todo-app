@@ -13,7 +13,15 @@ type TodoData = {
 	editing: boolean;
 };
 
-export function Panel() {
+type AppError = {
+	code: string | number;
+};
+
+type PanelProps = {
+	onError: (val: string, val2: AppError) => void;
+};
+
+export function Panel({ onError }: PanelProps) {
 	const [todoData, setTodoData] = useState<TodoData[]>([]);
 	const [isLoadingShown, setIsLoadingShown] = useState(true);
 	const [activeCategory, setActiveCategory] = useState('All');
@@ -27,7 +35,7 @@ export function Panel() {
 			const { data, error } = await supabase.from('todos').select().order('created_at', { ascending: true });
 
 			if (error) {
-				console.error(`Błąd podczas pobierania danych, numer błędu: ${error.code}`);
+				onError('Error fetching data, error code', error);
 				setIsLoadingShown(false);
 				return;
 			}
@@ -36,7 +44,7 @@ export function Panel() {
 		}
 
 		fetchTodos();
-	}, []);
+	}, [onError]);
 
 	async function addTodo(newTodo: string) {
 		const { data, error } = await supabase
@@ -45,7 +53,7 @@ export function Panel() {
 			.select();
 
 		if (error) {
-			console.error(`Błąd podczas dodawania danych, numer błędu: ${error.code}`);
+			onError('Error adding data, error code', error);
 			return;
 		} else {
 			setTodoData(prevTodo => [...prevTodo, { ...data[0], editing: false }]);
@@ -55,7 +63,7 @@ export function Panel() {
 	async function deleteTodo(id: number) {
 		const { error } = await supabase.from('todos').delete().eq('id', id);
 		if (error) {
-			console.error(`Błąd podczas usuwania danych, numer błędu: ${error.code}`);
+			onError('Error deleting data, error code', error);
 			return;
 		} else {
 			setTodoData(prevTodo => prevTodo.filter(todo => todo.id !== id));
@@ -66,7 +74,7 @@ export function Panel() {
 		const { error } = await supabase.from('todos').update({ done: !done }).eq('id', id);
 
 		if (error) {
-			console.error(error);
+			onError('Error patching data, error code', error);
 			return;
 		} else {
 			setTodoData(prevTodos =>
@@ -84,7 +92,7 @@ export function Panel() {
 		const { error } = await supabase.from('todos').update({ content: updatedContent }).eq('id', id);
 
 		if (error) {
-			console.error(error);
+			onError('Error patching data, error code', error);
 		} else {
 			setTodoData(prevTodo =>
 				prevTodo.map(todo => {
@@ -101,7 +109,7 @@ export function Panel() {
 		const { error } = await supabase.from('todos').delete().eq('done', true);
 
 		if (error) {
-			console.error(error);
+			onError('Error cleaning list, error code', error);
 		} else {
 			setTodoData(prevTodo => prevTodo.filter(todo => todo.done !== true));
 		}
