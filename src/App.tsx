@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Panel } from './components/Panel/Panel';
 import { Error } from './components/Error/Error';
+import { Auth } from './components/Auth/Auth';
 
 function App() {
 	const [error, setError] = useState('');
@@ -18,7 +19,8 @@ function App() {
 	return (
 		<main>
 			{error && <Error>{error}</Error>}
-			<Panel onError={handleError} />
+			{/* <Panel onError={handleError} /> */}
+			<Auth />
 		</main>
 	);
 }

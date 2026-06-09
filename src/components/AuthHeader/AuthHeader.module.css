@@ -1,0 +1,34 @@
+.authHeader {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+.authHeader .logo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.authHeader .icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 34px;
+	height: 34px;
+	background-color: var(--accent);
+	border-radius: 10px;
+	box-shadow: 0 6px 20px rgba(245, 181, 68, 0.25);
+}
+
+.authHeader h1 {
+	font-size: 3rem;
+	font-family: Fraunces, serif;
+	font-weight: 500;
+}
+
+.authHeader p {
+	font-size: 14px;
+	color: var(--text-faint);
+}

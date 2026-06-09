@@ -1,0 +1,35 @@
+.input {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	width: 100%;
+}
+
+.input input {
+	width: 100%;
+	padding: 10px 20px;
+	background-color: var(--bg);
+	color: var(--text);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	transition: border 0.2s;
+}
+
+.input input:focus {
+	outline: none;
+	border: 1px solid var(--accent);
+}
+
+.input label {
+	color: var(--text-dim);
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+input:-webkit-autofill {
+	background-color: var(--surface) !important;
+	-webkit-text-fill-color: var(--text) !important;
+	-webkit-box-shadow: 0 0 0 1000px var(--surface) inset !important;
+	transition: background-color 5000s ease-in-out 0s;
+}
