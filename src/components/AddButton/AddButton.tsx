@@ -1,4 +1,4 @@
-import styles from './PrimaryButton.module.css';
+import styles from './AddButton.module.css';
 import type { ReactNode } from 'react';
 
 type PrimaryButtonProps = {
@@ -7,7 +7,7 @@ type PrimaryButtonProps = {
 	type: 'submit' | 'button';
 };
 
-export function PrimaryButton({ children, disabled, type }: PrimaryButtonProps) {
+export function AddButton({ children, disabled, type }: PrimaryButtonProps) {
 	return (
 		<button className={styles.btn} disabled={disabled} type={type}>
 			{children}

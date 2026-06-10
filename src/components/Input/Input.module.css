@@ -12,6 +12,7 @@
 	color: var(--text);
 	border: 1px solid var(--border);
 	border-radius: 8px;
+    letter-spacing: 0.5px;
 	transition: border 0.2s;
 }
 
@@ -24,7 +25,7 @@
 	color: var(--text-dim);
 	font-size: 1.4rem;
 	text-transform: uppercase;
-	letter-spacing: 1px;
+	letter-spacing: 0.5px;
 }
 
 input:-webkit-autofill {

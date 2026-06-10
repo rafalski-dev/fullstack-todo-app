@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
+import { AddButton } from '../AddButton/AddButton';
 import styles from './Form.module.css';
 import { IconPlus } from '@tabler/icons-react';
 
@@ -28,9 +28,9 @@ export function Form({ addTodo }: FormProps) {
 				onChange={e => setInputValue(e.target.value)}
 			/>
 
-			<PrimaryButton disabled={inputValue === ''} type='submit'>
+			<AddButton disabled={inputValue === ''} type='submit'>
 				<IconPlus size={20} strokeWidth={3} />
-			</PrimaryButton>
+			</AddButton>
 		</form>
 	);
 }

@@ -1,0 +1,22 @@
+button {
+	padding: 8px 16px;
+	cursor: pointer;
+	border-radius: 7px;
+	font-weight: 500;
+	transition: transform 0.2s ease;
+}
+
+button:active {
+	transform: scale(0.98);
+}
+
+.primary {
+	background-color: var(--accent);
+	border: none;
+}
+
+.secondary {
+	background: none;
+	color: var(--text-dim);
+	border: 1px solid var(--border);
+}
