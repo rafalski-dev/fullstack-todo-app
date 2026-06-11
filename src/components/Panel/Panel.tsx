@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Footer } from '../Footer/Footer';
 import { Form } from '../Form/Form';
-import { Header } from '../Header/Header';
 import { List } from '../List/List';
 import styles from './Panel.module.css';
 import { supabase } from '../../lib/supabase';
+import { PanelHeader } from '../PanelHeader/PanelHeader';
 
 type TodoData = {
 	id: number;
@@ -136,7 +136,7 @@ export function Panel({ onError }: PanelProps) {
 
 	return (
 		<div className={styles.panel}>
-			<Header totalNumberOfTasks={totalNumberOfTasks} completedNumberOfTasks={completedNumberOfTasks} />
+			<PanelHeader totalNumberOfTasks={totalNumberOfTasks} completedNumberOfTasks={completedNumberOfTasks} />
 			<Form addTodo={addTodo} />
 			<List
 				isLoadingShown={isLoadingShown}

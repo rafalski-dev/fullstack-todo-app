@@ -1,27 +1,32 @@
 .header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+.headerContent {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	padding: 10px 15px;
 }
 
-.leftContainer {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	gap: 10px;
-}
-
-.leftContainer span {
-	font-size: 14px;
-	color: var(--text-faint);
-}
-
-.leftContainer .logo {
+.logo {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	cursor: pointer;
 }
 
-.leftContainer .icon {
+.logo span {
+	font-size: 3rem;
+	font-family: Fraunces, serif;
+	font-weight: 500;
+}
+
+.icon {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -32,31 +37,65 @@
 	box-shadow: 0 6px 20px rgba(245, 181, 68, 0.25);
 }
 
-.leftContainer h1 {
-	font-size: 3rem;
-	font-family: Fraunces, serif;
-	font-weight: 500;
+.avatar {
+	padding: 7px;
+	background-color: rgba(20, 20, 20, 0.4);
+	border: 1px solid var(--accent);
+	border-radius: 50%;
+	color: var(--text);
 }
 
-.rightContainer {
+.box {
+	position: relative;
+}
+
+.userMenu {
+	z-index: 1;
+	position: absolute;
+	top: 45px;
+	right: 0;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-end;
-	gap: 10px;
+	padding: 10px;
+	width: 200px;
+	background-color: rgba(20, 20, 20, 0.4);
+	backdrop-filter: blur(16px) saturate(1.2);
+	border: 1px solid var(--border);
+	border-radius: 8px;
 }
 
-.rightContainer .numberOfTasks {
-	font-size: 3rem;
-	font-family: Fraunces, serif;
+.userData {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--border);
 }
 
-.numberOfTasks span {
-	color: var(--text-faint);
+.fullname {
+	font-size: 1.4rem;
 }
 
-.rightContainer .completed {
-	color: var(--text-faint);
-	font-size: 14px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+.email {
+	font-size: 1.2rem;
+	color: var(--text-dim);
+}
+
+.btn {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	padding: 10px 10px;
+	margin-top: 10px;
+	gap: 5px;
+	background-color: transparent;
+	color: var(--delete);
+	border: none;
+	transition: background-color 0.2s;
+	cursor: pointer;
+	border-radius: 8px;
+}
+
+.btn:hover {
+	background-color: rgba(40, 40, 40, 0.4);
 }

@@ -1,4 +1,4 @@
-button {
+.btn {
 	padding: 8px 16px;
 	cursor: pointer;
 	border-radius: 7px;
@@ -6,7 +6,7 @@ button {
 	transition: transform 0.2s ease;
 }
 
-button:active {
+.btn:active {
 	transform: scale(0.98);
 }
 

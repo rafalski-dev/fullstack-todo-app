@@ -2,11 +2,17 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-	width: 550px;
+	width: 100%;
 	padding: 30px;
 	background-color: rgba(20, 20, 20, 0.4);
 	border-radius: 20px;
 	border: 1px solid var(--border);
 	backdrop-filter: blur(16px) saturate(1.1);
 	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 768px) {
+	.panel {
+		width: 550px;
+	}
 }

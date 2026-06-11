@@ -1,31 +1,55 @@
-import { formattedDate } from '../../utils/Date';
 import styles from './Header.module.css';
-import { IconListDetails } from '@tabler/icons-react';
+import { IconListDetails, IconLogout } from '@tabler/icons-react';
+import { Wrapper } from '../Wrapper/Wrapper';
+import { useEffect, useRef, useState } from 'react';
+import { supabase } from '../../lib/supabase';
 
-type HeaderProps = {
-	totalNumberOfTasks: number;
-	completedNumberOfTasks: number;
-};
+export function Header() {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const menuRef = useRef(null);
 
-export function Header({ totalNumberOfTasks, completedNumberOfTasks }: HeaderProps) {
+	useEffect(() => {
+		function handleClickOutside(e: MouseEvent) {
+			console.log(e.target);
+			if (menuRef.current && !menuRef.current.contains(e.target)) {
+				setIsMenuOpen(false);
+			}
+		}
+
+		document.addEventListener('click', handleClickOutside);
+
+		return () => document.removeEventListener('click', handleClickOutside);
+	}, []);
+
 	return (
 		<header className={styles.header}>
-			<div className={styles.leftContainer}>
-				<div className={styles.logo}>
-					<div className={styles.icon}>
-						<IconListDetails size={19} color='#0A0A0B' />
+			<Wrapper>
+				<div className={styles.headerContent}>
+					<div className={styles.logo}>
+						<div className={styles.icon}>
+							<IconListDetails size={19} color='#0A0A0B' />
+						</div>
+						<span>To Do</span>
 					</div>
-					<h1>To Do</h1>
+					<div className={styles.box} ref={menuRef}>
+						<button className={styles.avatar} onClick={() => setIsMenuOpen(prev => !prev)}>
+							JR
+						</button>
+						{isMenuOpen && (
+							<div className={styles.userMenu}>
+								<div className={styles.userData}>
+									<span className={styles.fullname}>Jakub Rafalski</span>
+									<span className={styles.email}>jakubrafalski96@gmail.com</span>
+								</div>
+								<button className={styles.btn} onClick={() => supabase.auth.signOut()}>
+									<IconLogout size={20} strokeWidth={1.8} />
+									Sign out
+								</button>
+							</div>
+						)}
+					</div>
 				</div>
-				<span>{formattedDate()}</span>
-			</div>
-			<div className={styles.rightContainer}>
-				<span className={styles.numberOfTasks}>
-					{completedNumberOfTasks}
-					<span> / {totalNumberOfTasks}</span>
-				</span>
-				<span className={styles.completed}>Completed</span>
-			</div>
+			</Wrapper>
 		</header>
 	);
 }
