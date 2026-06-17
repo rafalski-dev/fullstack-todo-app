@@ -1,24 +1,23 @@
 import styles from './Header.module.css';
 import { IconListDetails, IconLogout } from '@tabler/icons-react';
 import { Wrapper } from '../Wrapper/Wrapper';
-import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../../lib/supabase';
+import { useEffect, useRef, useState } from 'react';
 
 export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const menuRef = useRef(null);
+	const menuRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		function handleClickOutside(e: MouseEvent) {
-			console.log(e.target);
-			if (menuRef.current && !menuRef.current.contains(e.target)) {
+		function clickOutsideMenu(e: MouseEvent) {
+			if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
 				setIsMenuOpen(false);
 			}
 		}
 
-		document.addEventListener('click', handleClickOutside);
+		document.addEventListener('click', clickOutsideMenu);
 
-		return () => document.removeEventListener('click', handleClickOutside);
+		return () => document.removeEventListener('click', clickOutsideMenu);
 	}, []);
 
 	return (
@@ -32,7 +31,7 @@ export function Header() {
 						<span>To Do</span>
 					</div>
 					<div className={styles.box} ref={menuRef}>
-						<button className={styles.avatar} onClick={() => setIsMenuOpen(prev => !prev)}>
+						<button className={styles.avatar} onClick={() => setIsMenuOpen(prevMenu => !prevMenu)}>
 							JR
 						</button>
 						{isMenuOpen && (
