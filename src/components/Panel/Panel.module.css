@@ -11,7 +11,7 @@
 	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 968px) {
 	.panel {
 		width: 550px;
 	}

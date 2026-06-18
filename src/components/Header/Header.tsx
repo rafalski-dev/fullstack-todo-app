@@ -4,7 +4,7 @@ import { Wrapper } from '../Wrapper/Wrapper';
 import { supabase } from '../../lib/supabase';
 import { useEffect, useRef, useState } from 'react';
 
-export function Header() {
+export function Header({ session }) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 
@@ -32,13 +32,16 @@ export function Header() {
 					</div>
 					<div className={styles.box} ref={menuRef}>
 						<button className={styles.avatar} onClick={() => setIsMenuOpen(prevMenu => !prevMenu)}>
-							JR
+							{`${session.user.user_metadata.name.at(0)}${session.user.user_metadata.surname.at(0)}`}
 						</button>
 						{isMenuOpen && (
 							<div className={styles.userMenu}>
 								<div className={styles.userData}>
-									<span className={styles.fullname}>Jakub Rafalski</span>
-									<span className={styles.email}>jakubrafalski96@gmail.com</span>
+									<span
+										className={
+											styles.fullname
+										}>{`${session.user.user_metadata.name} ${session.user.user_metadata.surname}`}</span>
+									<span className={styles.email}>{session.user.user_metadata.email}</span>
 								</div>
 								<button className={styles.btn} onClick={() => supabase.auth.signOut()}>
 									<IconLogout size={20} strokeWidth={1.8} />

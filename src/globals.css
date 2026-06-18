@@ -32,7 +32,8 @@ html {
 body {
 	display: flex;
 	justify-content: center;
-	padding: 150px 15px 15px 15px;
+	align-items: center;
+	padding: 15px 15px 15px 15px;
 	width: 100%;
 	font-size: 1.6rem;
 	min-height: 100dvh;
@@ -51,4 +52,11 @@ button {
 
 input {
 	font-family: 'Hanken Grotesk', sans-serif;
+}
+
+@media (min-width: 968px) {
+	body {
+		padding: 150px 15px 15px 15px;
+		align-items: start;
+	}
 }

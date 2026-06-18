@@ -35,10 +35,10 @@ function App() {
 	}, []);
 
 	return (
-		<main className={styles.container} >
-			{session && <Header />}
+		<main className={styles.container}>
+			{session && <Header session={session} />}
 			{error && <Error>{error}</Error>}
-			{session ? <Panel onError={handleError} /> : <Auth />}
+			{session ? <Panel onError={handleError} session={session}/> : <Auth />}
 		</main>
 	);
 }

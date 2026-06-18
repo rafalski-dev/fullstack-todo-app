@@ -9,3 +9,9 @@
 	flex-direction: column;
 	gap: 7px;
 }
+
+.list span {
+	color: var(--text-dim);
+	font-size: 14px;
+	margin: 20px auto;
+}

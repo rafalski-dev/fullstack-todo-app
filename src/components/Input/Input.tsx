@@ -5,7 +5,7 @@ type InputProps = {
 	placeholder: string;
 	type: string;
 	value: string;
-	autoComplete: 'new-password' | 'email';
+	autoComplete: 'new-password' | 'email' | 'name' | 'surname';
 	handleInput: (val: string) => void;
 };
 

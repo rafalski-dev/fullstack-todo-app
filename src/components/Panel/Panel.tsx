@@ -5,6 +5,7 @@ import { List } from '../List/List';
 import styles from './Panel.module.css';
 import { supabase } from '../../lib/supabase';
 import { PanelHeader } from '../PanelHeader/PanelHeader';
+import type { Session } from '@supabase/supabase-js';
 
 type TodoData = {
 	id: number;
@@ -19,9 +20,10 @@ type AppError = {
 
 type PanelProps = {
 	onError: (val: string, val2: AppError) => void;
+	session: Session;
 };
 
-export function Panel({ onError }: PanelProps) {
+export function Panel({ onError, session }: PanelProps) {
 	const [todoData, setTodoData] = useState<TodoData[]>([]);
 	const [isLoadingShown, setIsLoadingShown] = useState(true);
 	const [activeCategory, setActiveCategory] = useState('All');
@@ -49,7 +51,7 @@ export function Panel({ onError }: PanelProps) {
 	async function addTodo(newTodo: string) {
 		const { data, error } = await supabase
 			.from('todos')
-			.insert([{ content: newTodo }])
+			.insert([{ content: newTodo, user_id: session.user.id }])
 			.select();
 
 		if (error) {

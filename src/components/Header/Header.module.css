@@ -38,7 +38,12 @@
 }
 
 .avatar {
-	padding: 7px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 35px;
+	height: 35px;
+	letter-spacing: 1px;
 	background-color: rgba(20, 20, 20, 0.4);
 	border: 1px solid var(--accent);
 	border-radius: 50%;

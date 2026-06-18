@@ -38,24 +38,28 @@ export function List({
 	return (
 		<div className={styles.list}>
 			<Filters changeCategory={changeCategory} activeCategory={activeCategory} />
-			<ul>
-				{filteredTodos.map(({ id, content, done, editing }) => {
-					return (
-						<TodoItem
-							key={id}
-							id={id}
-							content={content}
-							done={done}
-							editing={editing}
-							toggleTodo={toggleTodo}
-							deleteTodo={deleteTodo}
-							switchOnEditing={switchOnEditing}
-							switchOffEditing={switchOffEditing}
-							updateTodo={updateTodo}
-						/>
-					);
-				})}
-			</ul>
+			{filteredTodos.length !== 0 ? (
+				<ul>
+					{filteredTodos.map(({ id, content, done, editing }) => {
+						return (
+							<TodoItem
+								key={id}
+								id={id}
+								content={content}
+								done={done}
+								editing={editing}
+								toggleTodo={toggleTodo}
+								deleteTodo={deleteTodo}
+								switchOnEditing={switchOnEditing}
+								switchOffEditing={switchOffEditing}
+								updateTodo={updateTodo}
+							/>
+						);
+					})}
+				</ul>
+			) : (
+				<span>No tasks yet</span>
+			)}
 		</div>
 	);
 }
