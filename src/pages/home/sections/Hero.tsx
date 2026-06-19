@@ -8,8 +8,7 @@ export function Hero() {
 	const previewTasks = [
 		{ id: 1, content: 'Morning workout', done: true },
 		{ id: 2, content: 'Finish hero section', done: false },
-		{ id: 2, content: 'Finish hero section', done: false },
-
+		{ id: 2, content: 'Finish hero section', done: false }
 	];
 
 	const completedCount = previewTasks.filter(task => task.done).length;
