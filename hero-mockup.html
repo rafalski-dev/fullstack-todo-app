@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hero mockup — To Do</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.24.0/dist/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: #1a1a1a;
+      font-family: 'Hanken Grotesk', sans-serif;
+    }
+
+    .frame {
+      width: 100%;
+      max-width: 960px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #111010;
+    }
+
+    /* faux browser bar */
+    .browserbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #0c0c0c;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+    .urlpill {
+      font-size: 12px;
+      color: #56565e;
+      background: #141414;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 4px 40px;
+    }
+
+    /* hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 26px 30px 40px;
+      background: #111010;
+    }
+
+    /* OPCJA 2 — AURORA */
+    .aurora {
+      position: absolute;
+      inset: -60%;
+      z-index: 1;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg, #f5b544 60deg,
+        transparent 140deg, #b47814 220deg, transparent 320deg
+      );
+      filter: blur(85px);
+      opacity: 0.42;
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .heroContent { position: relative; z-index: 3; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo .icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px;
+      background: #f5b544;
+      border-radius: 10px;
+    }
+    .logo .icon i { font-size: 19px; color: #0a0a0b; }
+    .logo span {
+      font-family: 'Fraunces', serif;
+      font-size: 26px; font-weight: 500; color: #ededef;
+    }
+    .signin-top {
+      font-size: 14px; font-weight: 500;
+      color: #f5b544;
+      text-decoration: none;
+      padding: 8px 16px;
+      background: rgba(245, 181, 68, 0.08);
+      border: 1px solid rgba(245, 181, 68, 0.3);
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+    .signin-top:hover { background: rgba(245, 181, 68, 0.14); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 12.5px; color: #f5b544;
+      background: rgba(245, 181, 68, 0.1);
+      border: 1px solid rgba(245, 181, 68, 0.25);
+      border-radius: 999px;
+      padding: 5px 12px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600; font-size: 44px; line-height: 1.12;
+      color: #ededef; margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      font-size: 15.5px; line-height: 1.6;
+      color: #818193; margin-bottom: 28px;
+      max-width: 400px;
+    }
+    .cta-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .cta-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 600; color: #1a1407;
+      background: #f5b544;
+      border-radius: 11px; padding: 13px 22px;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(245, 181, 68, 0.22);
+      transition: filter 0.2s;
+    }
+    .cta-primary:hover { filter: brightness(1.07); }
+    .cta-secondary {
+      display: inline-flex; align-items: center;
+      font-size: 15px; font-weight: 500; color: #ededef;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 11px; padding: 13px 22px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-secondary:hover { background: rgba(255, 255, 255, 0.06); }
+    .trust { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #56565e; }
+    .trust i { font-size: 15px; color: #f5b544; }
+
+    /* preview panel */
+    .panel {
+      background: rgba(20, 20, 20, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+    .panel-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .panel-head .title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; color: #ededef; }
+    .panel-head .count {
+      font-size: 12px; color: #818193;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px; padding: 3px 9px;
+    }
+    .tasks { display: flex; flex-direction: column; gap: 9px; }
+    .task {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 13px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .check-done {
+      flex: none; width: 19px; height: 19px;
+      border-radius: 6px; background: #f5b544;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .check-done i { font-size: 13px; color: #1a1407; }
+    .check-empty {
+      flex: none; width: 19px; height: 19px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+    }
+    .task .label { font-size: 13.5px; color: #ededef; }
+    .task .label.done { color: #56565e; text-decoration: line-through; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .aurora { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="browserbar">
+      <span class="dot" style="background:#ff6347"></span>
+      <span class="dot" style="background:#f5b544"></span>
+      <span class="dot" style="background:#3ba776"></span>
+      <div style="flex:1;display:flex;justify-content:center">
+        <div class="urlpill">todoapp.com/</div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="aurora"></div>
+
+      <div class="heroContent">
+        <nav>
+          <div class="logo">
+            <div class="icon"><i class="ti ti-list-details"></i></div>
+            <span>To Do</span>
+          </div>
+          <a href="#" class="signin-top">Sign in</a>
+        </nav>
+
+        <div class="grid">
+          <div>
+            <div class="badge"><i class="ti ti-sparkles"></i>Stay on top of your day</div>
+            <h1>Get things done,<br>one task at a time.</h1>
+            <p class="subtitle">A simple, focused to-do app to capture tasks, track progress and clear your mind — nothing more, nothing less.</p>
+            <div class="cta-row">
+              <a href="#" class="cta-primary">Get started<i class="ti ti-arrow-right"></i></a>
+              <a href="#" class="cta-secondary">Sign in</a>
+            </div>
+            <div class="trust"><i class="ti ti-lock"></i>Free to use · your tasks stay private</div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <span class="title">Today</span>
+              <span class="count">2 / 4 done</span>
+            </div>
+            <div class="tasks">
+              <div class="task">
+                <span class="check-done"><i class="ti ti-check"></i></span>
+                <span class="label done">Morning workout</span>
+              </div>
+              <div class="task">
+                <span class="check-done"><i class="ti ti-check"></i></span>
+                <span class="label done">Reply to emails</span>
+              </div>
+              <div class="task">
+                <span class="check-empty"></span>
+                <span class="label">Finish hero section</span>
+              </div>
+              <div class="task">
+                <span class="check-empty"></span>
+                <span class="label">Plan weekend trip</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

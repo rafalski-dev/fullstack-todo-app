@@ -1,0 +1,129 @@
+.hero {
+	display: grid;
+	padding: 100px 15px 15px 15px;
+	grid-template-columns: 100%;
+	grid-template-rows: auto 1fr;
+	align-content: start;
+	gap: 40px;
+	width: 100%;
+	min-height: 100dvh;
+}
+
+.mainContent {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.hero h1 {
+	font-family: Fraunces, serif;
+	font-weight: 600;
+	font-size: 3.6rem;
+}
+
+.hero h2 {
+	font-weight: 400;
+	font-size: 1.5rem;
+	line-height: 1.5;
+	color: var(--text-dim);
+}
+
+.buttonsBox {
+	display: flex;
+	gap: 20px;
+}
+
+.hero p {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	color: var(--text-dim);
+	font-size: 1.4rem;
+}
+
+.preview {
+	margin: auto 0;
+	background-color: rgba(20, 20, 20, 0.4);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	padding: 20px;
+	height: fit-content;
+	backdrop-filter: blur(16px) saturate(1.1);
+	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.previewHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 16px;
+}
+
+.previewTitle {
+	font-family: Fraunces, serif;
+	font-weight: 500;
+	font-size: 1.8rem;
+}
+
+.previewCount {
+	color: var(--text-dim);
+	background-color: var(--surface-light);
+	padding: 3px 9px;
+	border-radius: 8px;
+	font-size: 1.2rem;
+}
+
+.previewList {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+}
+
+.previewItem {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	background-color: var(--surface);
+	padding: 12px 14px;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+}
+
+.checkbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 20px;
+	height: 20px;
+	background-color: var(--bg);
+	border: 2px solid var(--border-light);
+	border-radius: 6px;
+}
+
+.checkbox svg {
+	width: 15px;
+	height: 15px;
+	stroke-width: 3;
+	opacity: 0;
+}
+
+.done {
+	background-color: var(--accent);
+	border-color: var(--accent);
+	color: var(--bg);
+}
+
+.done svg {
+	opacity: 1;
+}
+
+.previewItem p {
+	font-size: 1.4rem;
+}
+
+.done ~ p {
+	color: var(--text-faint);
+	text-decoration: line-through;
+}

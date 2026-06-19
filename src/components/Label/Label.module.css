@@ -1,0 +1,10 @@
+.label {
+	padding: 5px 12px;
+	width: fit-content;
+	font-size: 1.3rem;
+	border: 1px solid var(--accent-dim);
+	border-radius: 14px;
+	color: var(--accent);
+	background-color: var(--accent-faint);
+	backdrop-filter: blur(16px) saturate(1.2);
+}

@@ -1,0 +1,16 @@
+.btn {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-weight: 500;
+	width: fit-content;
+	padding: 12px 20px;
+	color: var(--bg);
+	background-color: var(--accent);
+	border-radius: 10px;
+	transition: background-color 0.2s;
+}
+
+.btn:hover {
+	background-color: var(--accent-hover-light);
+}
