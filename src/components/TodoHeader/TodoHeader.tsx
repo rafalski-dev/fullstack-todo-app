@@ -3,8 +3,9 @@ import { IconLogout } from '@tabler/icons-react';
 import { Wrapper } from '../Wrapper/Wrapper';
 import { supabase } from '../../lib/supabase';
 import { useEffect, useRef, useState } from 'react';
+import { type Session } from '@supabase/supabase-js';
 
-export function TodoHeader({ session }) {
+export function TodoHeader({ session }: { session: Session }) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 
