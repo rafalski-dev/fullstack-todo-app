@@ -1,26 +1,28 @@
+import type { UseFormRegisterReturn } from 'react-hook-form';
 import styles from './Input.module.css';
 
 type InputProps = {
+	register: UseFormRegisterReturn;
 	name: string;
 	placeholder: string;
 	type: string;
-	value: string;
+	error: string | undefined ;
 	autoComplete: 'new-password' | 'email' | 'name' | 'surname';
-	handleInput: (val: string) => void;
 };
 
-export function Input({ name, placeholder, type, value, handleInput, autoComplete }: InputProps) {
+export function Input({ register, name, placeholder, type, autoComplete, error }: InputProps) {
 	return (
-		<div className={styles.input}>
-			<label htmlFor='name'>{name}</label>
+		<div className={styles.container}>
+			<label htmlFor={name}>{name}</label>
 			<input
-				id='name'
+				className={`${error ? styles.inputError : styles.input}`}
+				{...register}
+				id={name}
 				placeholder={placeholder}
 				type={type}
 				autoComplete={autoComplete}
-				value={value}
-				onChange={e => handleInput(e.target.value)}
 			/>
+			<div className={styles.error}>{error}</div>
 		</div>
 	);
 }

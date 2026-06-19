@@ -1,27 +1,30 @@
-.input {
+.container {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 	width: 100%;
 }
 
-.input input {
+.container input {
 	width: 100%;
 	padding: 10px 20px;
 	background-color: var(--bg);
 	color: var(--text);
-	border: 1px solid var(--border);
 	border-radius: 8px;
-    letter-spacing: 0.5px;
+	letter-spacing: 0.5px;
 	transition: border 0.2s;
 }
 
-.input input:focus {
+.input {
+	border: 1px solid var(--border);
+}
+
+.input:focus {
 	outline: none;
 	border: 1px solid var(--accent);
 }
 
-.input label {
+.container label {
 	color: var(--text-dim);
 	font-size: 1.4rem;
 	text-transform: uppercase;
@@ -33,4 +36,19 @@ input:-webkit-autofill {
 	-webkit-text-fill-color: var(--text) !important;
 	-webkit-box-shadow: 0 0 0 1000px var(--surface) inset !important;
 	transition: background-color 5000s ease-in-out 0s;
+}
+
+.inputError {
+	border: 1px solid var(--delete);
+}
+
+.inputError:focus {
+	outline: none;
+	border: 1px solid var(--delete);
+}
+
+.error {
+	font-size: 14px;
+	margin: 3px 0 0 10px;
+	color: var(--delete);
 }

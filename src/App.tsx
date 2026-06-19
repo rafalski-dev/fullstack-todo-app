@@ -16,15 +16,20 @@ function App() {
 
 	const handleError = useCallback((msg: string, err: AppError) => {
 		setError(`${msg} ${err.code}`);
-		setTimeout(() => setError(''), 3000);
+		setTimeout(() => setError(''), 6000);
 		console.error(`${msg} ${err.code}`);
 	}, []);
 
 	useEffect(() => {
-		supabase.auth.getSession().then(({ data }) => {
-			setSession(data.session);
-			console.log(data.session);
-		});
+		async function checkSession() {
+			const { data, error } = await supabase.auth.getSession();
+			if (error) {
+				console.error(data.session);
+			} else {
+				setSession(data.session);
+			}
+		}
+		checkSession();
 
 		const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
 			console.log(session);
@@ -38,7 +43,7 @@ function App() {
 		<main className={styles.container}>
 			{session && <Header session={session} />}
 			{error && <Error>{error}</Error>}
-			{session ? <Panel onError={handleError} session={session}/> : <Auth />}
+			{session ? <Panel onError={handleError} session={session} /> : <Auth onError={handleError} />}
 		</main>
 	);
 }
