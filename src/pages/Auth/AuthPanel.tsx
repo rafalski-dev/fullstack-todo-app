@@ -1,4 +1,4 @@
-export function Auth() {
+export function AuthPanel() {
 	return;
 }
 
