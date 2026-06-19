@@ -1,5 +1,5 @@
 export function AuthPanel() {
-	return;
+	return <div></div>;
 }
 
 // import { useCallback, useEffect, useState } from 'react';
