@@ -1,19 +1,12 @@
 import { Label } from '../../../components/Label/Label';
 import { PrimaryCTA } from '../../../components/PrimaryCTA/PrimaryCTA';
-import { IconArrowNarrowRight, IconLock, IconCheck, IconSparkles } from '@tabler/icons-react';
+import { IconArrowNarrowRight, IconLock, IconSparkles } from '@tabler/icons-react';
 import styles from './Hero.module.css';
 import { SecondaryCTA } from '../../../components/SecondaryCTA/SecondaryCTA';
 import { Wrapper } from '../../../components/Wrapper/Wrapper';
+import { Preview } from '../../../components/Preview/Preview';
 
 export function Hero() {
-	const PREVIEW_TASKS = [
-		{ id: 1, content: 'Morning workout', done: true },
-		{ id: 2, content: 'Finish hero section', done: false },
-		{ id: 3, content: 'Collet parcel', done: false }
-	];
-
-	const completedCount = PREVIEW_TASKS.filter(task => task.done).length;
-
 	return (
 		<section className={styles.hero}>
 			<div className={`${styles.orb} ${styles.orb1}`} />
@@ -48,24 +41,7 @@ export function Hero() {
 							Free to use. Tasks stays private.
 						</p>
 					</div>
-					<div className={styles.preview}>
-						<div className={styles.previewHeader}>
-							<span className={styles.previewTitle}>Today</span>
-							<span className={styles.previewCount}>
-								{completedCount} / {PREVIEW_TASKS.length} done
-							</span>
-						</div>
-						<ul className={styles.previewList}>
-							{PREVIEW_TASKS.map(task => (
-								<li key={task.id} className={styles.previewItem}>
-									<span className={`${styles.checkbox} ${task.done ? styles.done : ''}`}>
-										<IconCheck />
-									</span>
-									<p>{task.content}</p>
-								</li>
-							))}
-						</ul>
-					</div>
+					<Preview />
 				</div>
 			</Wrapper>
 		</section>
