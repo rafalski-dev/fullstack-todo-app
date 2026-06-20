@@ -21,3 +21,7 @@
 	border-radius: 10px;
 	box-shadow: 0 6px 20px rgba(245, 181, 68, 0.15);
 }
+
+a {
+	color: var(--text);
+}
