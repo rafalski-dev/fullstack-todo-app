@@ -16,6 +16,9 @@ export function Hero() {
 
 	return (
 		<section className={styles.hero}>
+			<div className={`${styles.orb} ${styles.orb1}`} />
+			<div className={`${styles.orb} ${styles.orb2}`} />
+			<div className={`${styles.orb} ${styles.orb3}`} />
 			<Wrapper>
 				<div className={styles.container}>
 					<div className={styles.mainContent}>

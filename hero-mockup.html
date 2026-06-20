@@ -56,21 +56,49 @@
       background: #111010;
     }
 
-    /* OPCJA 2 — AURORA */
-    .aurora {
+    /* ORBITUJĄCE ORBY */
+    .orb {
       position: absolute;
-      inset: -60%;
       z-index: 1;
-      background: conic-gradient(
-        from 0deg,
-        transparent 0deg, #f5b544 60deg,
-        transparent 140deg, #b47814 220deg, transparent 320deg
-      );
-      filter: blur(85px);
-      opacity: 0.42;
-      animation: spin 20s linear infinite;
+      border-radius: 50%;
+      background: #f5b544;
+      filter: blur(80px);
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .orb1 {
+      top: -30%; left: -25%;
+      width: 420px; height: 320px;
+      opacity: 0.5;
+      animation: orbit1 9s ease-in-out infinite;
+    }
+    .orb2 {
+      bottom: -60px; right: -40px;
+      width: 360px; height: 320px;
+      opacity: 0.45;
+      animation: orbit2 11s ease-in-out infinite;
+    }
+    .orb3 {
+      bottom: 40px; left: 35%;
+      width: 220px; height: 190px;
+      opacity: 0.32;
+      animation: orbit3 14s ease-in-out infinite;
+    }
+    @keyframes orbit1 {
+      0%, 100% { transform: translate(0, 0)        scale(1); }
+      25%      { transform: translate(80px, 35px)  scale(1.15); }
+      50%      { transform: translate(100px, 100px) scale(1.25); }
+      75%      { transform: translate(25px, 80px)  scale(1.1); }
+    }
+    @keyframes orbit2 {
+      0%, 100% { transform: translate(0, 0)         scale(1); }
+      25%      { transform: translate(-65px, 45px)  scale(1.18); }
+      50%      { transform: translate(-90px, -55px) scale(1.1); }
+      75%      { transform: translate(-25px, -75px) scale(1.2); }
+    }
+    @keyframes orbit3 {
+      0%, 100% { transform: translate(0, 0)         scale(1); }
+      33%      { transform: translate(55px, -45px)  scale(1.22); }
+      66%      { transform: translate(-35px, -65px) scale(1.12); }
+    }
 
     .heroContent { position: relative; z-index: 3; }
 
@@ -195,9 +223,12 @@
     .task .label { font-size: 13.5px; color: #ededef; }
     .task .label.done { color: #56565e; text-decoration: line-through; }
 
+    /* DEMO: celowo WYŁĄCZONE, żeby animacja działała mimo systemowego "reduce motion".
+       W prawdziwym komponencie ZOSTAW to włączone (dostępność):
     @media (prefers-reduced-motion: reduce) {
-      .aurora { animation: none; }
+      .orb { animation: none; }
     }
+    */
   </style>
 </head>
 <body>
@@ -212,7 +243,9 @@
     </div>
 
     <section class="hero">
-      <div class="aurora"></div>
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
 
       <div class="heroContent">
         <nav>
