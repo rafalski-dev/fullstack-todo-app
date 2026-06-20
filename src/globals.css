@@ -54,10 +54,3 @@ input {
 a {
 	text-decoration: none;
 }
-
-@media (min-width: 968px) {
-	body {
-		padding: 150px 15px 15px 15px;
-		align-items: start;
-	}
-}

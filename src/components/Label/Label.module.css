@@ -1,4 +1,7 @@
 .label {
+	display: flex;
+	align-items: center;
+	gap: 7px;
 	padding: 5px 12px;
 	width: fit-content;
 	font-size: 1.3rem;

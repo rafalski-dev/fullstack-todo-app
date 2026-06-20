@@ -1,12 +1,15 @@
 .hero {
-	display: grid;
+	width: 100%;
 	padding: 90px 15px 30px 15px;
+	min-height: 100dvh;
+}
+
+.container {
+	display: grid;
 	grid-template-columns: 100%;
 	grid-template-rows: auto 1fr;
 	align-content: start;
 	gap: 30px;
-	width: 100%;
-	min-height: 100dvh;
 }
 
 .mainContent {
@@ -19,6 +22,9 @@
 	font-family: Fraunces, serif;
 	font-weight: 600;
 	font-size: 3.6rem;
+}
+.break {
+	display: none;
 }
 
 .hero h2 {
@@ -126,4 +132,38 @@
 .done ~ p {
 	color: var(--text-faint);
 	text-decoration: line-through;
+}
+
+@media (min-width: 768px) {
+	.break {
+		display: inline;
+	}
+}
+
+@media (min-width: 1024px) {
+	.hero {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.container {
+		grid-template-columns: 55% 1fr;
+	}
+
+	.hero h1 {
+		font-size: 4.8rem;
+	}
+
+	.hero p {
+		font-size: 1.5rem;
+	}
+
+	.hero h2 {
+		font-size: 1.8rem;
+		line-height: 1.8;
+	}
+
+	.buttonsBox {
+		margin: 25px 0 25px 0;
+	}
 }
