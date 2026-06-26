@@ -38,7 +38,7 @@ export function Hero() {
 						<p>
 							{' '}
 							<IconLock size={17} color='#f5b544' />
-							Free to use. Tasks stays private.
+							Free to use. Tasks stay private.
 						</p>
 					</div>
 					<Preview />

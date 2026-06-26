@@ -11,7 +11,7 @@ export const signUpSchema = z.object({
 			'Password must contain at least one uppercase letter, one digit and one special character'
 		),
 	name: z.string().min(1, 'Provide name'),
-	surname: z.string().min(1, 'Provide username')
+	surname: z.string().min(1, 'Provide surname')
 });
 
 export type SignUpFormType = z.infer<typeof signUpSchema>;

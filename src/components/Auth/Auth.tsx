@@ -75,11 +75,12 @@ export function Auth() {
 						error={errors.email?.message}
 					/>
 					<Input
+						key={isRegistering ? 'password-signup' : 'password-signin'}
 						register={register('password')}
 						name='password'
 						placeholder='********'
 						type='password'
-						autoComplete='new-password'
+						autoComplete={isRegistering ? 'new-password' : 'current-password'}
 						error={errors.password?.message}
 					/>
 					{isRegistering && (

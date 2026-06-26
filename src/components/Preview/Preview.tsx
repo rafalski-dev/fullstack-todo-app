@@ -3,7 +3,7 @@ import styles from './Preview.module.css';
 const PREVIEW_TASKS = [
 	{ id: 1, content: 'Morning workout', done: true },
 	{ id: 2, content: 'Finish hero section', done: false },
-	{ id: 3, content: 'Collet parcel', done: false }
+	{ id: 3, content: 'Collect parcel', done: false }
 ];
 export function Preview() {
 	const completedCount = PREVIEW_TASKS.filter(task => task.done).length;

@@ -1,16 +1,18 @@
+import type { Category } from '../../types/types';
 import styles from './CategoryButton.module.css';
 
 type CategoryButtonProps = {
 	children: string;
-	changeCategory: (val: string) => void;
-	activeCategory: string;
+	value: Category;
+	changeCategory: (val: Category) => void;
+	activeCategory: Category;
 };
 
-export function CategoryButton({ children, changeCategory, activeCategory }: CategoryButtonProps) {
+export function CategoryButton({ children, value, changeCategory, activeCategory }: CategoryButtonProps) {
 	return (
 		<button
-			onClick={() => changeCategory(children)}
-			className={`${styles.btn} ${activeCategory === children ? styles.active : ''}`}>
+			onClick={() => changeCategory(value)}
+			className={`${styles.btn} ${activeCategory === value ? styles.active : ''}`}>
 			{children}
 		</button>
 	);

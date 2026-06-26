@@ -54,7 +54,7 @@ export function TodoHeader({ session }: SessionProps) {
 										className={
 											styles.fullname
 										}>{`${session?.user.user_metadata.name} ${session?.user.user_metadata.surname}`}</span>
-									<span className={styles.email}>{session?.user.user_metadata.email}</span>
+									<span className={styles.email}>{session?.user.email}</span>
 								</div>
 								<button
 									className={styles.btn}

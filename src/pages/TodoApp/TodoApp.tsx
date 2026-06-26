@@ -6,14 +6,13 @@ import { supabase } from '../../lib/supabase';
 import { TodoHeader } from '../../components/TodoHeader/TodoHeader';
 import { type Session } from '@supabase/supabase-js';
 import styles from './TodoApp.module.css';
+import { Spinner } from '../../components/Spinner/Spinner';
+import type { AppError } from '../../types/types';
 
 export function TodoApp() {
 	const [error, setError] = useState('');
 	const [session, setSession] = useState<Session | null>(null);
-
-	type AppError = {
-		code: string | number;
-	};
+	const [isChecking, setIsChecking] = useState(true);
 
 	const handleError = useCallback((msg: string, err: AppError) => {
 		setError(`${msg} ${err.code}`);
@@ -25,10 +24,11 @@ export function TodoApp() {
 		async function checkSession() {
 			const { data, error } = await supabase.auth.getSession();
 			if (error) {
-				console.error(data.session);
+				console.error(error);
 			} else {
 				setSession(data.session);
 			}
+			setIsChecking(false);
 		}
 		checkSession();
 
@@ -43,9 +43,9 @@ export function TodoApp() {
 			<div className={`${styles.orb} ${styles.orb1}`} />
 			<div className={`${styles.orb} ${styles.orb2}`} />
 			<div className={`${styles.orb} ${styles.orb3}`} />
-			<TodoHeader session={session} />
+			{!isChecking && <TodoHeader session={session} />}
 			{error && <Error>{error}</Error>}
-			{session ? <Panel onError={handleError} session={session} /> : <Auth />}
+			{isChecking ? <Spinner /> : session ? <Panel onError={handleError} session={session} /> : <Auth />}
 		</section>
 	);
 }

@@ -2,8 +2,8 @@
 	position: relative;
 	display: flex;
 	justify-content: center;
-	align-items: start;
-	padding: 15px 15px 15px 15px;
+	align-items: center;
+	padding: 70px 15px 15px 15px;
 	width: 100%;
 	min-height: 100dvh;
 	overflow: hidden;
@@ -94,7 +94,7 @@
 
 @media (min-width: 1024px) {
 	.todoApp {
-		padding: 150px 30px 30px 30px;
+		padding: 130px 30px 30px 30px;
 	}
 
 	.orb {

@@ -2,7 +2,7 @@ import styles from './Button.module.css';
 
 type ButtonProps = {
 	children: string;
-	variant: string;
+	variant: 'primary' | 'secondary';
 	type: 'submit' | 'button';
 	onClick?: () => void;
 	disabled?: boolean;

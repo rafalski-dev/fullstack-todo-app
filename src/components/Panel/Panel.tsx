@@ -6,17 +6,7 @@ import styles from './Panel.module.css';
 import { supabase } from '../../lib/supabase';
 import { PanelHeader } from '../PanelHeader/PanelHeader';
 import type { Session } from '@supabase/supabase-js';
-
-type TodoData = {
-	id: number;
-	content: string;
-	done: boolean;
-	editing: boolean;
-};
-
-type AppError = {
-	code: string | number;
-};
+import type { AppError, Category, TodoData } from '../../types/types';
 
 type PanelProps = {
 	onError: (val: string, val2: AppError) => void;
@@ -26,7 +16,7 @@ type PanelProps = {
 export function Panel({ onError, session }: PanelProps) {
 	const [todoData, setTodoData] = useState<TodoData[]>([]);
 	const [isLoadingShown, setIsLoadingShown] = useState(true);
-	const [activeCategory, setActiveCategory] = useState('All');
+	const [activeCategory, setActiveCategory] = useState<Category>('All');
 
 	const totalNumberOfTasks: number = todoData.length;
 	const completedNumberOfTasks: number = todoData.filter(todo => todo.done).length;
@@ -132,7 +122,7 @@ export function Panel({ onError, session }: PanelProps) {
 		setTodoData(prevTodo => prevTodo.map(todo => ({ ...todo, editing: false })));
 	}
 
-	function changeCategory(category: string) {
+	function changeCategory(category: Category) {
 		setActiveCategory(category);
 	}
 

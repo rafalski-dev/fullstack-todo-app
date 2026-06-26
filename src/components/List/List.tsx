@@ -3,17 +3,18 @@ import styles from './List.module.css';
 import { TodoItem } from '../TodoItem/TodoItem';
 import { Spinner } from '../Spinner/Spinner';
 import { Filters } from '../Filters/Filters';
+import type { Category, TodoData } from '../../types/types';
 
 type ListProps = {
-	todoData: { id: number; content: string; done: boolean; editing: boolean }[];
+	todoData: TodoData[];
 	toggleTodo: (val: number, val2: boolean) => void;
 	deleteTodo: (val: number) => void;
 	switchOnEditing: (val: number) => void;
 	switchOffEditing: () => void;
 	updateTodo: (val: string, val2: number) => void;
 	isLoadingShown: boolean;
-	changeCategory: (val: string) => void;
-	activeCategory: string;
+	changeCategory: (val: Category) => void;
+	activeCategory: Category;
 };
 
 export function List({
