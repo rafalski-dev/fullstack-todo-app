@@ -5,13 +5,12 @@ import styles from './Hero.module.css';
 import { SecondaryCTA } from '../../../components/SecondaryCTA/SecondaryCTA';
 import { Wrapper } from '../../../components/Wrapper/Wrapper';
 import { Preview } from '../../../components/Preview/Preview';
+import { Background } from '../../../components/Background/Background';
 
 export function Hero() {
 	return (
 		<section className={styles.hero}>
-			<div className={`${styles.orb} ${styles.orb1}`} />
-			<div className={`${styles.orb} ${styles.orb2}`} />
-			<div className={`${styles.orb} ${styles.orb3}`} />
+			<Background />
 			<Wrapper>
 				<div className={styles.container}>
 					<div className={styles.mainContent}>
@@ -28,7 +27,7 @@ export function Hero() {
 							and clear your mind — nothing more, nothing less.
 						</h2>
 						<div className={styles.buttonsBox}>
-							<PrimaryCTA path='/auth'>
+							<PrimaryCTA path='/auth/register'>
 								Get started <IconArrowNarrowRight strokeWidth={1.3} />
 							</PrimaryCTA>
 							<SecondaryCTA path={'/auth'} variant='large'>

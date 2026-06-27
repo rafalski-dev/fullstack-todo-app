@@ -1,0 +1,17 @@
+.todoApp {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 15px;
+	min-height: 100dvh;
+	overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+	.todoApp {
+		align-items: start;
+		padding: 150px 15px 15px 15px;
+	}
+}

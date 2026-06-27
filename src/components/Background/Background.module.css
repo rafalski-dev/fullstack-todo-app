@@ -1,15 +1,12 @@
-.todoApp {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 70px 15px 15px 15px;
-	width: 100%;
-	min-height: 100dvh;
+.background {
+	position: absolute; 
+	inset: 0;
 	overflow: hidden;
+	z-index: 0;
+	pointer-events: none;
 }
 
-.todoApp::after {
+.background::after {
 	content: '';
 	position: absolute;
 	inset: 0;

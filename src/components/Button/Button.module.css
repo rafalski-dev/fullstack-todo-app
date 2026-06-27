@@ -1,5 +1,9 @@
 .btn {
+	display: flex;
+	justify-content: center;
+	aling-items: center;
 	padding: 8px 16px;
+	font-size: 1.5rem;
 	cursor: pointer;
 	border-radius: 7px;
 	font-weight: 500;

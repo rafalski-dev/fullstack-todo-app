@@ -47,7 +47,10 @@ button {
 	cursor: pointer;
 }
 
-input {
+input,
+textarea,
+select {
+	font-size: 1.6rem;
 	font-family: 'Hanken Grotesk', sans-serif;
 }
 

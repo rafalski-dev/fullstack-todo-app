@@ -2,8 +2,14 @@ import { createRoot } from 'react-dom/client';
 import './globals.css';
 import App from './App.tsx';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { TodoApp } from './pages/TodoApp/TodoApp.tsx';
-import { Home } from './pages/home/Home.tsx';
+import { TodoAppPage } from './pages/TodoAppPage/TodoAppPage.tsx';
+import { Home } from './pages/Home/Home.tsx';
+import { SessionProvider } from './context/SessionContext.tsx';
+import { PublicRoute } from './components/PublicRoute/PublicRoute.tsx';
+import { AuthPage } from './pages/AuthPage/AuthPage.tsx';
+import { RestrictedRoute } from './components/RestrictedRoute/RestrictedRoute.tsx';
+import { Auth } from './components/Auth/Auth.tsx';
+import { Register } from './components/Register/Register.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -11,10 +17,32 @@ const router = createBrowserRouter([
 		element: <App />,
 		children: [
 			{ index: true, element: <Home /> },
-			{ path: '/offer', element: <p>Oferta</p> }
+			{
+				path: '/auth',
+				element: (
+					<PublicRoute>
+						<AuthPage />
+					</PublicRoute>
+				),
+				children: [
+					{ index: true, element: <Auth /> },
+					{ path: 'register', element: <Register /> }
+				]
+			},
+			{
+				path: '/app',
+				element: (
+					<RestrictedRoute>
+						<TodoAppPage />
+					</RestrictedRoute>
+				)
+			}
 		]
-	},
-	{ path: '/auth', element: <TodoApp /> }
+	}
 ]);
 
-createRoot(document.getElementById('root')!).render(<RouterProvider router={router} />);
+createRoot(document.getElementById('root')!).render(
+	<SessionProvider>
+		<RouterProvider router={router} />{' '}
+	</SessionProvider>
+);

@@ -1,7 +1,7 @@
 import { IconListDetails } from '@tabler/icons-react';
 import styles from './AuthHeader.module.css';
 
-export function AuthHeader() {
+export function AuthHeading() {
 	return (
 		<div className={styles.authHeader}>
 			<div className={styles.logo}>

@@ -1,16 +1,15 @@
-import styles from './Auth.module.css';
+import styles from './Register.module.css';
 import { AuthHeading } from '../AuthHeading/AuthHeading';
 import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
 import { useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { signInSchema } from '../../validation/signInSchema';
-import { type SignUpFormType } from '../../validation/signUpSchema';
+import { signUpSchema, type SignUpFormType } from '../../validation/signUpSchema';
 import { useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Error } from '../Error/Error';
 
-export function Auth() {
+export function Register() {
 	const [authError, setAuthError] = useState('');
 
 	const {
@@ -19,20 +18,29 @@ export function Auth() {
 		reset,
 		formState: { errors }
 	} = useForm<SignUpFormType>({
-		resolver: zodResolver(signInSchema) as unknown as Resolver<SignUpFormType> // zmienic typ
+		resolver: zodResolver(signUpSchema) as unknown as Resolver<SignUpFormType>
 	});
 
-	async function handleSigningIn(signInData: { email: string; password: string }) {
-		const { email, password } = signInData;
-		const { error } = await supabase.auth.signInWithPassword({ email, password });
+	async function handleCreateAccount(signUpData: SignUpFormType) {
+		const { email, password, name, surname } = signUpData;
+		const { error } = await supabase.auth.signUp({
+			email,
+			password,
+			options: {
+				data: { name, surname }
+			}
+		});
+
 		if (error) {
 			setAuthError(error.message);
 			setTimeout(() => setAuthError(''), 8000);
+			return;
 		}
+		reset();
 	}
 
 	function onSubmit(data: SignUpFormType) {
-		handleSigningIn(data);
+		handleCreateAccount(data);
 	}
 
 	return (
@@ -50,26 +58,37 @@ export function Auth() {
 						error={errors.email?.message}
 					/>
 					<Input
-						key='password-signin'
+						key={'password-signup'}
 						register={register('password')}
 						name='password'
 						placeholder='********'
 						type='password'
-						autoComplete='current-password'
+						autoComplete={'new-password'}
 						error={errors.password?.message}
 					/>
+					<Input
+						register={register('name')}
+						name='name'
+						placeholder='name'
+						type='text'
+						autoComplete='name'
+						error={errors.name?.message}
+					/>
+					<Input
+						register={register('surname')}
+						name='surname'
+						placeholder='surname'
+						type='text'
+						autoComplete='surname'
+						error={errors.surname?.message}
+					/>
+
 					<div className={styles.buttonBox}>
 						<Button variant='primary' type='submit'>
-							Sign in
+							Sign Up
 						</Button>
-						<Button
-							variant='secondary'
-							type='button'
-							path='/auth/register'
-							onClick={() => {
-								reset();
-							}}>
-							Create Account
+						<Button variant='secondary' path='/auth' type='button'>
+							Back to Sign In
 						</Button>
 					</div>
 				</form>

@@ -10,7 +10,7 @@ import type { AppError, Category, TodoData } from '../../types/types';
 
 type PanelProps = {
 	onError: (val: string, val2: AppError) => void;
-	session: Session;
+	session: Session | null;
 };
 
 export function Panel({ onError, session }: PanelProps) {
