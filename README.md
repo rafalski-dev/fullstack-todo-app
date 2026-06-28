@@ -1,10 +1,16 @@
+
+
+
+
+
+
 # ✅ Fullstack To-Do App
 
 A full-stack to-do application built as a portfolio project to showcase my skills while I'm looking for a position as a front-end developer. App demonstrates a complete, working full-stack flow — authentication, a database, and per-user task management — built and deployed end to end.
 
 🔗 **Live demo:** https://todo-app-rafalski.vercel.app/
 
- <!-- app video -->
+https://github.com/user-attachments/assets/0f2e12d6-bd40-43e5-8995-185f43d0e175
 
 ## 🛠️ Tech Stack
 
@@ -59,7 +65,7 @@ My focus here was front-end craft, so instead of building a backend from scratch
 
 I wanted an interface that feels modern and pleasant to look at, but never competes with the task itself. The result is a focused dark UI with a subtle animated background — polished, but quiet.
 
-## 🛠️ Running project locally
+## ⚙️ Running project locally
 
 ### Prerequisites
 
