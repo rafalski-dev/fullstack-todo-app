@@ -1,16 +1,10 @@
-
-
-
-
-
-
 # ✅ Fullstack To-Do App
 
 A full-stack to-do application built as a portfolio project to showcase my skills while I'm looking for a position as a front-end developer. App demonstrates a complete, working full-stack flow — authentication, a database, and per-user task management — built and deployed end to end.
 
 🔗 **Live demo:** https://todo-app-rafalski.vercel.app/
 
-https://github.com/user-attachments/assets/0f2e12d6-bd40-43e5-8995-185f43d0e175
+https://github.com/user-attachments/assets/084a79b4-af30-4bca-bcab-be2aaba52512
 
 ## 🛠️ Tech Stack
 
