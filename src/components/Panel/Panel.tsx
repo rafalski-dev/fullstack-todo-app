@@ -4,7 +4,7 @@ import { Form } from "../Form/Form";
 import { List } from "../List/List";
 import styles from "./Panel.module.css";
 import { supabase } from "../../lib/supabase";
-import { PanelHeader } from "../PanelHeader/PanelHeader";
+import { PanelHeading } from "../PanelHeading/PanelHeading";
 import type { Session } from "@supabase/supabase-js";
 import type { AppError, Category, TodoData } from "../../types/types";
 
@@ -143,7 +143,7 @@ export function Panel({ onError, session }: PanelProps) {
 
   return (
     <div className={styles.panel}>
-      <PanelHeader
+      <PanelHeading
         totalNumberOfTasks={totalNumberOfTasks}
         completedNumberOfTasks={completedNumberOfTasks}
       />

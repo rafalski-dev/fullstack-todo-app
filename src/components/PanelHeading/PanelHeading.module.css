@@ -1,0 +1,62 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.leftContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: 10px;
+}
+
+.leftContainer span {
+	font-size: 14px;
+	color: var(--text-faint);
+}
+
+.leftContainer .logo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.leftContainer .icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 34px;
+	height: 34px;
+	background-color: var(--accent);
+	border-radius: 10px;
+	box-shadow: 0 6px 20px rgba(245, 181, 68, 0.25);
+}
+
+.leftContainer h1 {
+	font-size: 3rem;
+	font-family: Fraunces, serif;
+	font-weight: 500;
+}
+
+.rightContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 10px;
+}
+
+.rightContainer .numberOfTasks {
+	font-size: 3rem;
+	font-family: Fraunces, serif;
+}
+
+.numberOfTasks span {
+	color: var(--text-faint);
+}
+
+.rightContainer .completed {
+	color: var(--text-faint);
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
