@@ -5,16 +5,20 @@ import type { AppError } from '../../types/types';
 import { SessionContext } from '../../context/SessionContext';
 import { Background } from '../../components/Background/Background';
 import styles from './TodoAppPage.module.css';
+import { Spinner } from '../../components/Spinner/Spinner';
 
 export function TodoAppPage() {
 	const [error, setError] = useState('');
-	const { session } = useContext(SessionContext);
+	const { session, isChecking } = useContext(SessionContext);
 
 	const handleError = useCallback((msg: string, err: AppError) => {
 		setError(`${msg} ${err.code}`);
 		setTimeout(() => setError(''), 6000);
 		console.error(`${msg} ${err.code}`);
 	}, []);
+
+	if (isChecking) return <Spinner />
+	if (!session) return null
 
 	return (
 		<section className={styles.todoApp}>

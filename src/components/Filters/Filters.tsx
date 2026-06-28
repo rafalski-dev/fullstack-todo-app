@@ -1,6 +1,7 @@
 import styles from './Filters.module.css';
 import { CategoryButton } from '../CategoryButton/CategoryButton';
-import type { Category } from '../Panel/Panel';
+import type { Category } from '../../types/types';
+
 
 type FiltersType = {
 	changeCategory: (val: Category) => void;

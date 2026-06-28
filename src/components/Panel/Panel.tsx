@@ -10,7 +10,7 @@ import type { AppError, Category, TodoData } from '../../types/types';
 
 type PanelProps = {
 	onError: (val: string, val2: AppError) => void;
-	session: Session | null;
+	session: Session;
 };
 
 export function Panel({ onError, session }: PanelProps) {
@@ -41,7 +41,7 @@ export function Panel({ onError, session }: PanelProps) {
 	async function addTodo(newTodo: string) {
 		const { data, error } = await supabase
 			.from('todos')
-			.insert([{ content: newTodo, user_id: session.user.id }])
+			.insert([{ content: newTodo, user_id: session.user.id  }])
 			.select();
 
 		if (error) {
