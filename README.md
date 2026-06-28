@@ -59,7 +59,7 @@ My focus here was front-end craft, so instead of building a backend from scratch
 
 I wanted an interface that feels modern and pleasant to look at, but never competes with the task itself. The result is a focused dark UI with a subtle animated background — polished, but quiet.
 
-## ⚙️ Running project locally
+## ⚙️ Running the project locally
 
 ### Prerequisites
 
@@ -68,31 +68,40 @@ I wanted an interface that feels modern and pleasant to look at, but never compe
 
 ### Installation
 
-1. **Clone the repository**
-   \`\`\`bash
-   git clone https://github.com/rafalski-dev/fullstack-todo-app.git
-   cd fullstack-todo-app
-   \`\`\`
+**1. Clone the repository**
 
-2. **Install dependencies**
-   \`\`\`bash
-   npm install
-   \`\`\`
+```bash
+git clone https://github.com/rafalski-dev/fullstack-todo-app.git
+cd fullstack-todo-app
+```
 
-3. **Set up environment variables** — create a `.env.local` file in the project root:
-   \`\`\`bash
-   cp .env.example .env.local
-   \`\`\`
-   Then fill in your Supabase credentials:
-   \`\`\`env
-   VITE_SUPABASE_URL=your-project-url
-   VITE_SUPABASE_ANON_KEY=your-anon-key
-   \`\`\`
+**2. Install dependencies**
 
-   > You'll find both in your Supabase dashboard under **Project Settings → API**.
+```bash
+npm install
+```
 
-4. **Start the dev server**
-   \`\`\`bash
-   npm run dev
-   \`\`\`
-   The app runs at **http://localhost:5173**.
+**3. Set up environment variables**
+
+Create a `.env.local` file in the project root:
+
+```bash
+cp .env.example .env.local
+```
+
+Then fill in your Supabase credentials:
+
+```env
+VITE_SUPABASE_URL=your-project-url
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+> You'll find both in your Supabase dashboard under **Project Settings → API**.
+
+**4. Start the dev server**
+
+```bash
+npm run dev
+```
+
+The app runs at **http://localhost:5173**.
