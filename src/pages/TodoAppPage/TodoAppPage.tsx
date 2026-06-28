@@ -1,30 +1,30 @@
-import { useCallback, useContext, useState } from 'react';
-import { Panel } from '../../components/Panel/Panel';
-import { Error } from '../../components/Error/Error';
-import type { AppError } from '../../types/types';
-import { SessionContext } from '../../context/SessionContext';
-import { Background } from '../../components/Background/Background';
-import styles from './TodoAppPage.module.css';
-import { Spinner } from '../../components/Spinner/Spinner';
+import { useCallback, useContext, useState } from "react";
+import { Panel } from "../../components/Panel/Panel";
+import { Error } from "../../components/Error/Error";
+import type { AppError } from "../../types/types";
+import { SessionContext } from "../../context/SessionContext";
+import { Background } from "../../components/Background/Background";
+import styles from "./TodoAppPage.module.css";
+import { Spinner } from "../../components/Spinner/Spinner";
 
 export function TodoAppPage() {
-	const [error, setError] = useState('');
-	const { session, isChecking } = useContext(SessionContext);
+  const [error, setError] = useState("");
+  const { session, isChecking } = useContext(SessionContext);
 
-	const handleError = useCallback((msg: string, err: AppError) => {
-		setError(`${msg} ${err.code}`);
-		setTimeout(() => setError(''), 6000);
-		console.error(`${msg} ${err.code}`);
-	}, []);
+  const handleError = useCallback((msg: string, err: AppError) => {
+    setError(`${msg} ${err.code}`);
+    setTimeout(() => setError(""), 6000);
+    console.error(`${msg} ${err.code}`);
+  }, []);
 
-	if (isChecking) return <Spinner />
-	if (!session) return null
+  if (isChecking) return <Spinner />;
+  if (!session) return null;
 
-	return (
-		<section className={styles.todoApp}>
-			<Background />
-			{error && <Error>{error}</Error>}
-			<Panel onError={handleError} session={session} />
-		</section>
-	);
+  return (
+    <section className={styles.todoApp}>
+      <Background />
+      {error && <Error>{error}</Error>}
+      <Panel onError={handleError} session={session} />
+    </section>
+  );
 }
