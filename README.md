@@ -4,7 +4,7 @@ A full-stack to-do application built as a portfolio project to showcase my skill
 
 🔗 **Live demo:** https://todo-app-rafalski.vercel.app/
 
-https://github.com/user-attachments/assets/084a79b4-af30-4bca-bcab-be2aaba52512
+https://github.com/user-attachments/assets/2cd8453d-ce8f-42ac-aafc-690279f5b62d
 
 ## 🛠️ Tech Stack
 
