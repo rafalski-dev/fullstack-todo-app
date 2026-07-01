@@ -11,6 +11,7 @@ import { Auth } from './components/Auth/Auth.tsx';
 import { Register } from './components/Register/Register.tsx';
 import { Home } from './pages/Home/Home.tsx';
 import { RegisterSuccess } from './components/RegisterSuccess/RegisterSuccess.tsx';
+import { EmailConfirmed } from './components/EmailConfirmed/EmailConfirmed.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -20,17 +21,36 @@ const router = createBrowserRouter([
 			{ index: true, element: <Home /> },
 			{
 				path: '/auth',
-				element: (
-					<PublicRoute>
-						<AuthPage />
-					</PublicRoute>
-				),
+				element: <AuthPage />,
 				children: [
-					{ index: true, element: <Auth /> },
-					{ path: 'register', element: <Register /> },
-					{ path: 'register-success', element: <RegisterSuccess /> }
+					{
+						index: true,
+						element: (
+							<PublicRoute>
+								<Auth />
+							</PublicRoute>
+						)
+					},
+					{
+						path: 'register',
+						element: (
+							<PublicRoute>
+								<Register />{' '}
+							</PublicRoute>
+						)
+					},
+					{
+						path: 'register-success',
+						element: (
+							<PublicRoute>
+								<RegisterSuccess />
+							</PublicRoute>
+						)
+					},
+					{ path: 'email-confirmed', element: <EmailConfirmed /> }
 				]
 			},
+
 			{
 				path: '/app',
 				element: (
