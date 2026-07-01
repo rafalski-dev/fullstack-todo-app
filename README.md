@@ -2,7 +2,7 @@
 
 A full-stack to-do application built as a portfolio project to showcase my skills while I'm looking for a position as a front-end developer. App demonstrates a complete, working full-stack flow — authentication, a database, and per-user task management — built and deployed end to end.
 
-🔗 **Live demo:** https://todo-app-rafalski.vercel.app/
+🔗 **Live demo:** https://todo-app-rafalski.vercel.app
 
 https://github.com/user-attachments/assets/2cd8453d-ce8f-42ac-aafc-690279f5b62d
 
