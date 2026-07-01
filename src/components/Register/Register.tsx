@@ -8,9 +8,11 @@ import { signUpSchema, type SignUpFormType } from '../../validation/signUpSchema
 import { useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Error } from '../Error/Error';
+import { useNavigate } from 'react-router-dom';
 
 export function Register() {
 	const [authError, setAuthError] = useState('');
+	const navigate = useNavigate();
 
 	const {
 		register,
@@ -37,6 +39,7 @@ export function Register() {
 			return;
 		}
 		reset();
+		navigate('/auth/register-success');
 	}
 
 	function onSubmit(data: SignUpFormType) {
