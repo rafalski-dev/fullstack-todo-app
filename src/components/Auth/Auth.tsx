@@ -40,7 +40,7 @@ export function Auth() {
 			{authError && <Error>{authError}</Error>}
 			<div className={styles.auth}>
 				<AuthHeading />
-				<form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit)}>
+				<form className={styles.form} autoComplete='off' noValidate onSubmit={handleSubmit(onSubmit)}>
 					<Input
 						register={register('email')}
 						name='email'

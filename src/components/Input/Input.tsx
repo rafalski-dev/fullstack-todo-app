@@ -7,7 +7,7 @@ type InputProps = {
 	placeholder: string;
 	type: string;
 	error: string | undefined;
-	autoComplete: 'new-password' | 'current-password' | 'email' | 'name' | 'surname';
+	autoComplete?: 'new-password' | 'current-password' | 'email' | 'name' | 'surname';
 };
 
 export function Input({ register, name, placeholder, type, autoComplete, error }: InputProps) {
