@@ -4,8 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 export function AuthHeading() {
 	const path = useLocation();
-	console.log(path.pathname);
-	const choseTitle = path.pathname === '/auth' ? 'Sign in to manage your tasks' : 'Sign up to manage yout tasks';
+	const choseTitle = path.pathname === '/auth' ? 'Sign in to manage your tasks' : 'Sign up to manage your tasks';
 	return (
 		<div className={styles.authHeader}>
 			<div className={styles.logo}>

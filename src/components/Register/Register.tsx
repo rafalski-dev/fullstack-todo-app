@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function Register() {
 	const [authError, setAuthError] = useState('');
+	const [isPasswordShown, setIsPasswordShown] = useState(false);
 	const navigate = useNavigate();
 
 	const {
@@ -23,17 +24,17 @@ export function Register() {
 		resolver: zodResolver(signUpSchema) as unknown as Resolver<SignUpFormType>,
 		defaultValues: {
 			email: '',
-			password: '',
+			newPassword: '',
 			name: '',
 			surname: ''
 		}
 	});
 
 	async function handleCreateAccount(signUpData: SignUpFormType) {
-		const { email, password, name, surname } = signUpData;
+		const { email, newPassword, name, surname } = signUpData;
 		const { error } = await supabase.auth.signUp({
 			email,
-			password,
+			password: newPassword,
 			options: {
 				data: { name, surname }
 			}
@@ -67,13 +68,15 @@ export function Register() {
 						error={errors.email?.message}
 					/>
 					<Input
-						key={'password-signup'}
-						register={register('password')}
-						name='password'
+						key='password-signup'
+						register={register('newPassword')}
+						name={'newPassword'}
 						placeholder='********'
-						type='password'
-						autoComplete={'new-password'}
-						error={errors.password?.message}
+						type={isPasswordShown ? 'text' : 'password'}
+						autoComplete='current-password'
+						error={errors.newPassword?.message}
+						isPasswordShown={isPasswordShown}
+						onEyeButtonClick={() => setIsPasswordShown(prev => !prev)}
 					/>
 					<Input
 						register={register('name')}

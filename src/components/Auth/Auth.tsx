@@ -4,22 +4,22 @@ import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
 import { useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { signInSchema } from '../../validation/signInSchema';
-import { type SignUpFormType } from '../../validation/signUpSchema';
+import { signInSchema, type SignInFormType } from '../../validation/signInSchema';
 import { useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Error } from '../Error/Error';
 
 export function Auth() {
 	const [authError, setAuthError] = useState('');
+	const [isPasswordShown, setIsPasswordShown] = useState(false);
 
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors }
-	} = useForm<SignUpFormType>({
-		resolver: zodResolver(signInSchema) as unknown as Resolver<SignUpFormType>,
+	} = useForm<SignInFormType>({
+		resolver: zodResolver(signInSchema) as unknown as Resolver<SignInFormType>,
 		defaultValues: {
 			email: '',
 			password: ''
@@ -35,7 +35,7 @@ export function Auth() {
 		}
 	}
 
-	function onSubmit(data: SignUpFormType) {
+	function onSubmit(data: SignInFormType) {
 		handleSigningIn(data);
 	}
 
@@ -56,11 +56,13 @@ export function Auth() {
 					<Input
 						key='password-signin'
 						register={register('password')}
-						name='password'
+						name={'password'}
 						placeholder='********'
-						type='password'
+						type={isPasswordShown ? 'text' : 'password'}
 						autoComplete='current-password'
 						error={errors.password?.message}
+						isPasswordShown={isPasswordShown}
+						onEyeButtonClick={() => setIsPasswordShown(prev => !prev)}
 					/>
 					<div className={styles.buttonBox}>
 						<Button variant='primary' type='submit'>

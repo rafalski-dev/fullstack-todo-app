@@ -52,3 +52,24 @@ input:-webkit-autofill {
 	margin: 3px 0 0 10px;
 	color: var(--delete);
 }
+
+.eyeBtn {
+	position: absolute;
+	top: 50%;
+
+	right: 10px;
+	color: var(--text-faint);
+	background: none;
+	border: none;
+	transform: translateY(-50%);
+	transition: 0.3s color;
+}
+
+.eyeBtn:hover {
+	color: var(--text-dim);
+}
+
+.inputBox {
+	position: relative;
+	width: 100%;
+}

@@ -5,3 +5,4 @@ export const signInSchema = z.object({
 	password: z.string().min(1, 'Provide password').max(36, 'Password to long')
 });
 
+export type SignInFormType = z.infer<typeof signInSchema>;
