@@ -19,7 +19,11 @@ export function Auth() {
 		reset,
 		formState: { errors }
 	} = useForm<SignUpFormType>({
-		resolver: zodResolver(signInSchema) as unknown as Resolver<SignUpFormType> // zmienic typ
+		resolver: zodResolver(signInSchema) as unknown as Resolver<SignUpFormType>,
+		defaultValues: {
+			email: '',
+			password: ''
+		}
 	});
 
 	async function handleSigningIn(signInData: { email: string; password: string }) {
@@ -40,7 +44,7 @@ export function Auth() {
 			{authError && <Error>{authError}</Error>}
 			<div className={styles.auth}>
 				<AuthHeading />
-				<form className={styles.form} autoComplete='off' noValidate onSubmit={handleSubmit(onSubmit)}>
+				<form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit)}>
 					<Input
 						register={register('email')}
 						name='email'

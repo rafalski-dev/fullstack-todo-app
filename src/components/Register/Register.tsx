@@ -20,7 +20,13 @@ export function Register() {
 		reset,
 		formState: { errors }
 	} = useForm<SignUpFormType>({
-		resolver: zodResolver(signUpSchema) as unknown as Resolver<SignUpFormType>
+		resolver: zodResolver(signUpSchema) as unknown as Resolver<SignUpFormType>,
+		defaultValues: {
+			email: '',
+			password: '',
+			name: '',
+			surname: ''
+		}
 	});
 
 	async function handleCreateAccount(signUpData: SignUpFormType) {
@@ -51,7 +57,7 @@ export function Register() {
 			{authError && <Error>{authError}</Error>}
 			<div className={styles.auth}>
 				<AuthHeading />
-				<form className={styles.form} autoComplete='off' noValidate onSubmit={handleSubmit(onSubmit)}>
+				<form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit)}>
 					<Input
 						register={register('email')}
 						name='email'
